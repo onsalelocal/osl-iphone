@@ -187,6 +187,10 @@
 }
  */
 
+- (void) containerFinishedUpdating:(NSNotification*) notification{
+    [self refresh:self];
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     RootViewController* rvc = (RootViewController*)segue.destinationViewController;
     NSIndexPath* indexPath = [[self.collectionView indexPathsForSelectedItems]lastObject];

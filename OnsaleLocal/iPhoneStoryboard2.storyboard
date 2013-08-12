@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SYM-lO-hZn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="v4w-m6-3cl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -574,7 +574,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xkx-0U-nqt"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="hWg-9d-ejY" id="xxC-L0-Tw0"/>
                         <outlet property="emailTextField" destination="t8c-4Z-goh" id="vAN-H7-ynD"/>
@@ -584,6 +583,7 @@
                         <outlet property="maleFemaleSegmentedControl" destination="0eN-tr-5mo" id="K8Y-U8-Yth"/>
                         <outlet property="notificationsSwitch" destination="pfR-9d-3ym" id="Z9c-Em-zSx"/>
                         <outlet property="passwordTextField" destination="zJP-JY-7fI" id="EzP-Zw-2cT"/>
+                        <outlet property="saveButton" destination="gz1-6D-DJy" id="IzN-PY-0e9"/>
                         <outlet property="scrollView" destination="IFS-gO-eXt" id="T5O-iG-fkK"/>
                         <outlet property="zipcode" destination="fXZ-uk-Cho" id="5D6-L5-w1z"/>
                     </connections>
@@ -1223,7 +1223,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StoreCommentsCell" rowHeight="66" id="grz-ak-mRh" customClass="StoreCommentCell">
-                                        <rect key="frame" x="0.0" y="46" width="320" height="67"/>
+                                        <rect key="frame" x="0.0" y="46" width="320" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="280" height="65"/>
@@ -1866,21 +1866,27 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_login_640x1136.png" translatesAutoresizingMaskIntoConstraints="NO" id="Phf-GU-BDG">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter Your Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sj1-ZN-saW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter Your Email" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sj1-ZN-saW">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" type="user" id="6i9-of-72l"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="v4w-m6-3cl" id="v7d-pw-U6Y"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZUz-D8-f5l">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZUz-D8-f5l">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="vRa-Sa-zdV"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="v4w-m6-3cl" id="9uR-t7-jNu"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1d-RT-t2C">
                                 <constraints>
@@ -1964,22 +1970,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="1sj-kY-bca" secondAttribute="centerX" type="user" id="0jF-GA-8mr"/>
                             <constraint firstItem="Phf-GU-BDG" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="-19" type="user" id="16L-ma-25f"/>
                             <constraint firstItem="Sj1-ZN-saW" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="106" type="user" id="3xV-4T-8Pb"/>
                             <constraint firstItem="Phf-GU-BDG" firstAttribute="bottom" secondItem="esA-3w-OTR" secondAttribute="bottom" type="user" id="4Ae-zx-Jb1"/>
                             <constraint firstAttribute="trailing" secondItem="ZUz-D8-f5l" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="7qe-xp-IqD"/>
-                            <constraint firstAttribute="trailing" secondItem="1sj-kY-bca" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Azo-pe-yLj"/>
-                            <constraint firstItem="1sj-kY-bca" firstAttribute="centerX" secondItem="ptc-cH-uHT" secondAttribute="centerX" type="default" id="EoR-gv-rsA"/>
+                            <constraint firstItem="1sj-kY-bca" firstAttribute="centerX" secondItem="ptc-cH-uHT" secondAttribute="centerX" type="user" id="EoR-gv-rsA"/>
+                            <constraint firstItem="ptc-cH-uHT" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="280" type="user" id="Fui-cX-RpI"/>
                             <constraint firstItem="wzW-b1-EBz" firstAttribute="centerX" secondItem="Sj1-ZN-saW" secondAttribute="centerX" type="default" id="HEZ-zq-erR"/>
                             <constraint firstItem="ZUz-D8-f5l" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="144" type="user" id="HY3-ki-49e"/>
                             <constraint firstItem="sN1-K1-9w0" firstAttribute="top" secondItem="G1d-RT-t2C" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Lt8-eC-5US"/>
                             <constraint firstItem="Phf-GU-BDG" firstAttribute="leading" secondItem="esA-3w-OTR" secondAttribute="leading" type="default" id="PAx-4y-hQE"/>
                             <constraint firstAttribute="trailing" secondItem="Sj1-ZN-saW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="QNV-0G-Yp1"/>
-                            <constraint firstAttribute="bottom" secondItem="yf2-j4-u4F" secondAttribute="bottom" constant="104" id="X6O-YV-GKA"/>
+                            <constraint firstItem="1sj-kY-bca" firstAttribute="leading" secondItem="esA-3w-OTR" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="ZXw-2w-zKb"/>
                             <constraint firstItem="G1d-RT-t2C" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="191" id="aX6-Ht-TvL"/>
                             <constraint firstItem="wzW-b1-EBz" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="24" id="bPN-gY-Qbq"/>
                             <constraint firstItem="Phf-GU-BDG" firstAttribute="trailing" secondItem="esA-3w-OTR" secondAttribute="trailing" type="default" id="crm-lc-lXM"/>
-                            <constraint firstAttribute="bottom" secondItem="1sj-kY-bca" secondAttribute="bottom" constant="165" id="dBP-b6-rHy"/>
+                            <constraint firstItem="1sj-kY-bca" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="274" type="user" id="dzJ-6b-ofX"/>
                             <constraint firstItem="G1d-RT-t2C" firstAttribute="leading" secondItem="esA-3w-OTR" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="fHX-V9-wpZ"/>
                             <constraint firstItem="CKP-cD-SgO" firstAttribute="top" secondItem="sN1-K1-9w0" secondAttribute="top" type="user" id="fr3-eh-upX"/>
                             <constraint firstAttribute="trailing" secondItem="G1d-RT-t2C" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ggF-r3-kn1"/>
@@ -1987,10 +1994,9 @@
                             <constraint firstItem="Sj1-ZN-saW" firstAttribute="leading" secondItem="esA-3w-OTR" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="iaL-R8-1lU"/>
                             <constraint firstItem="ZUz-D8-f5l" firstAttribute="top" secondItem="Sj1-ZN-saW" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="j7j-6E-9jQ"/>
                             <constraint firstItem="sN1-K1-9w0" firstAttribute="leading" secondItem="esA-3w-OTR" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="k3v-0U-eSB"/>
-                            <constraint firstItem="1sj-kY-bca" firstAttribute="leading" secondItem="esA-3w-OTR" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lgs-Uf-Qzp"/>
-                            <constraint firstAttribute="bottom" secondItem="ptc-cH-uHT" secondAttribute="bottom" constant="159" id="pJF-P7-t1B"/>
-                            <constraint firstItem="ptc-cH-uHT" firstAttribute="centerX" secondItem="yf2-j4-u4F" secondAttribute="centerX" type="default" id="qAh-PG-xdE"/>
                             <constraint firstAttribute="trailing" secondItem="CKP-cD-SgO" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="qaD-mP-12f"/>
+                            <constraint firstAttribute="centerX" secondItem="yf2-j4-u4F" secondAttribute="centerX" type="user" id="r6t-XX-wWk"/>
+                            <constraint firstItem="yf2-j4-u4F" firstAttribute="top" secondItem="esA-3w-OTR" secondAttribute="top" constant="314" type="user" id="w3m-SP-H5f"/>
                             <constraint firstItem="sN1-K1-9w0" firstAttribute="bottom" secondItem="CKP-cD-SgO" secondAttribute="bottom" type="default" id="ydv-K6-nXr"/>
                         </constraints>
                     </view>
@@ -2004,7 +2010,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYJ-jz-ASk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="255" y="-4087"/>
+            <point key="canvasLocation" x="-529" y="-2331"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="b2W-ha-3bG">
@@ -2165,7 +2171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6s-s1-XUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="-4087"/>
+            <point key="canvasLocation" x="14" y="-2331"/>
         </scene>
         <!--TestAF Networking View Controller-->
         <scene sceneID="qnZ-tX-X6L">
@@ -2350,7 +2356,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kf-IW-8Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="-1429"/>
+            <point key="canvasLocation" x="68" y="-1708"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="ndt-eI-EUB">
@@ -3315,6 +3321,7 @@
                 <relationship kind="outlet" name="maleFemaleSegmentedControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="notificationsSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="zipcode" candidateClass="UITextField"/>
             </relationships>

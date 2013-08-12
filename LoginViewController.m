@@ -12,12 +12,13 @@
 #import "CustomTabBarController.h"
 #import "RegisterViewController.h"
 
-@interface LoginViewController ()<NSURLConnectionDataDelegate, NSURLConnectionDelegate, UIAlertViewDelegate>
+@interface LoginViewController ()<NSURLConnectionDataDelegate, NSURLConnectionDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSURLConnection *fbConnection;
 @property (strong, nonatomic) NSMutableData* fbData;
 @property (strong, nonatomic) NSURLConnection *loginConnection;
 @property (strong, nonatomic) NSMutableData *loginData;
+@property (strong, nonatomic) CustomTabBarController* customTabBarController;
 
 
 @end
@@ -44,6 +45,15 @@
     //NSLog(@"%@", NSStringFromCGRect(self.loginButton.frame  ));
     //[self viewDidAppear:YES];
     //NSLog(@"%@", NSStringFromCGRect(self.loginButton.frame  ));
+    self.emailTextField.userInteractionEnabled = YES;
+    self.passwordTextField.userInteractionEnabled = YES;
+    NSLog(@"%@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation] );
+    if([[NSUserDefaults standardUserDefaults] boolForKey:FB_LOGIN_SUCCESS]){
+        [self fbLogin];
+    }
+    else if([[NSUserDefaults standardUserDefaults] boolForKey:USER_LOGGED_IN]){
+        [self login];
+    }
 
 }
 
@@ -182,7 +192,7 @@
         txt = [[NSString alloc]initWithData:self.fbData encoding:NSUTF8StringEncoding];
         d = [NSJSONSerialization JSONObjectWithData:self.fbData options:NSJSONReadingMutableLeaves|NSJSONReadingMutableContainers error:&error];
 
-        NSLog(@"%@", d);
+        //NSLog(@"%@", d);
         if(error){
             NSLog(@"%@", error.localizedDescription);
         }else{
@@ -192,9 +202,28 @@
             //[[NSUserDefaults standardUserDefaults] setValue:d[USER_PASSWORD] forKey:USER_PASSWORD];
             [[NSUserDefaults standardUserDefaults]setValue:d[@"login"] forKey:USER_EMAIL];
             [[NSUserDefaults standardUserDefaults] setValue:d[USER_ID] forKey:USER_ID];
+            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:FB_LOGIN_SUCCESS];
+            [[NSUserDefaults standardUserDefaults] setValue:d[USER_FIRST_NAME] forKey:USER_FIRST_NAME];
+            [[NSUserDefaults standardUserDefaults] setValue:d[USER_LAST_NAME] forKey:USER_LAST_NAME];
             [self.loginDelegate didFinishLoggingIn:self];
         }
     }
+    [self prepCustomTabController];
+}
+
+-(void) prepCustomTabController{
+    self.customTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"CustomTabBarController"];
+    AppDelegate* appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    //appDelegate.window.rootViewController = self.customTabBarController;
+    //[appDelegate.window addSubview:self.customTabBarController.view];
+    //[appDelegate.window makeKeyAndVisible];
+    //[self.view removeFromSuperview];
+    //[appDelegate.window.rootViewController addChildViewController:self.customTabBarController];
+    [appDelegate.window.rootViewController presentViewController:self.customTabBarController animated:NO completion:NULL];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+    
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -216,5 +245,19 @@
         self.passwordTextField.text = @"";
     }
 }
+
+#pragma mark - text field delegates
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return YES;
+}
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+   return YES;
+}
+
+
 
 @end

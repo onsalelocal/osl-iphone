@@ -52,6 +52,7 @@
     [_window setBackgroundColor:[UIColor clearColor]];
     [_window setWindowLevel:UIWindowLevelStatusBar+1];
     [_window makeKeyAndVisible];
+    [_window setRootViewController:self.vc];
     [_window addSubview:self.vc.view];
     NSLog(@"%@",NSStringFromCGRect( self.vc.view.frame));
 }
@@ -92,22 +93,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:USER_LOGGED_IN];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:FB_LOGIN_SUCCESS];
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:USER_LOGGED_IN];
+    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:FB_LOGIN_SUCCESS];
     /*
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *each in cookieStorage.cookies) {
         [cookieStorage deleteCookie:each];
     }
      */
+    /*
     if (![[NSUserDefaults standardUserDefaults]boolForKey:USER_LOGGED_IN] && ![[NSUserDefaults standardUserDefaults] boolForKey:FB_LOGIN_SUCCESS]) {
-        [self setupLogin];
+        //[self setupLogin];
     }
     else if([[NSUserDefaults standardUserDefaults] boolForKey:FB_LOGIN_SUCCESS]){
         [self fbLogin];
     }
 #warning 'else' statement not verified
     else{//log user into server in the background
+    
         NSMutableURLRequest* request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:@"http://onsalelocal.com/osl2/ws/user/login"]];
         NSUUID* uuid = [[UIDevice currentDevice]identifierForVendor];
         NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
@@ -121,7 +124,7 @@
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody: [s dataUsingEncoding:NSUTF8StringEncoding]];
         [request setValue:header forHTTPHeaderField:@"Reqid"];
-        //[request setValue:@"text/plain"/*@"application/x-www-form-urlencoded"*/ forHTTPHeaderField:@"content-type"];
+        //[request setValue:@"text/plain" forHTTPHeaderField:@"content-type"];
         [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [request setHTTPShouldHandleCookies:YES];
@@ -131,7 +134,7 @@
         NSURLConnection *c = [[NSURLConnection alloc]initWithRequest:request delegate:self];
         
         
-    }
+    }*/
 }
 
 
@@ -205,7 +208,7 @@
         
     }
     else{//ok pressed
-        [self setupLogin];
+        //[self setupLogin];
     }
 }
 

@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableData* data;
 @property (strong, nonatomic) NSURLConnection* avatarConnection;
 @property (strong, nonatomic) NSMutableData* avatarData;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 @end
 
@@ -73,7 +74,19 @@
         //NSString* stringURL =
         
     }
+    NSLog(@"%@", NSStringFromCGSize(self.view.frame.size));
+    CGSize size = CGSizeMake(self.view.frame.size.width, 1000);
+    NSLog(@"%@", NSStringFromCGSize(size));
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.scrollView setContentSize:CGSizeMake(
+                                               self.scrollView.bounds.size.width,
+                                               CGRectGetMaxY(self.saveButton.frame)
+                                               )];
+
 }
 
 - (void) setupView{

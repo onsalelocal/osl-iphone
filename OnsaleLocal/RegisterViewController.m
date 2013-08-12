@@ -46,6 +46,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.fields = @[self.firstName,self.lastName,self.email,self.password,self.reEnterPassword,self.zipcode];
+    for(UITextField* field in self.fields){
+        field.userInteractionEnabled = YES;
+    }
     self.keyboardControls = [[BSKeyboardControls alloc]initWithFields:self.fields];
     self.keyboardControls.delegate = self;
     self.first = NO;
