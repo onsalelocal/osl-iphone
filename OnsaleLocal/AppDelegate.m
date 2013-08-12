@@ -67,6 +67,7 @@
                 NSLog(@"User session found");
                 [[NSUserDefaults standardUserDefaults] setObject:session.accessTokenData.accessToken forKey:FB_ACCESS_TOKEN];
                 [[NSUserDefaults standardUserDefaults]setBool:YES forKey:FB_LOGIN_SUCCESS];
+                [[NSNotificationCenter defaultCenter]postNotificationName:FB_LOGIN_SUCCESS object:self];
                 
             }
             break;
@@ -111,6 +112,7 @@
                                                              error:error];
                                          NSLog(@"%@",session.accessTokenData.accessToken);
                                          [[NSUserDefaults standardUserDefaults] setObject:session.accessTokenData.accessToken forKey:FB_ACCESS_TOKEN];
+                                         
                                      }];
 }
 

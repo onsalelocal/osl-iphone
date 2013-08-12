@@ -204,6 +204,10 @@
             
             NSURL* url = [NSURL URLWithString:self.currentQuery];
             NSMutableURLRequest* request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
+            NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+            NSDictionary * headers = [NSHTTPCookie requestHeaderFieldsWithCookies:
+                                      [cookieJar cookies]];
+            [request setAllHTTPHeaderFields:headers];
             NSUUID* uuid = [[UIDevice currentDevice]identifierForVendor];
             if(!uuid){//below ios 6.0
                 uuid = [[NSUUID alloc]initWithUUIDString:[[UIDevice currentDevice]uniqueIdentifier]];
@@ -214,6 +218,8 @@
             NSString *header = [NSString stringWithFormat:@"ios;%@;%@;%@;%f;%f;%ld",[uuid UUIDString], version, userID,self.location.coordinate.latitude, self.location.coordinate.longitude, ms];
             [request addValue:header forHTTPHeaderField:@"Reqid"];
             NSLog(@"%@", self.currentQuery);
+            
+            
             
             self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
             

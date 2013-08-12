@@ -13,7 +13,7 @@
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
 
-@interface RegisterViewController ()<UITextFieldDelegate, BSKeyboardControlsDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate>
+@interface RegisterViewController ()<UITextFieldDelegate, BSKeyboardControlsDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) BSKeyboardControls *keyboardControls;
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
@@ -93,6 +93,9 @@
 {
     [self.keyboardControls setActiveField:textField];
     [self keyboardControls:self.keyboardControls selectedField:textField inDirection:nil];
+}
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    return YES;
 }
 
 - (IBAction)enterPressed:(id)sender {

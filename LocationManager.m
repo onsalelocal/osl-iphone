@@ -33,6 +33,20 @@ static LocationManager* _instance = nil;
 
 }
 
++ (void) startUpdating{
+    NSLog(@"%@", _instance.manager);
+    [_instance.manager startMonitoringSignificantLocationChanges];
+    CLLocation* loc = [[CLLocation alloc] initWithLatitude:37.3703 longitude:-121.924];
+    [Container startUpdatingWithLocation:loc];
+    
+}
+
+
++ (void) stopUpdating{
+    [_instance.manager stopMonitoringSignificantLocationChanges];
+    
+}
+
 - (void) stopUpdating{
     [self.manager stopMonitoringSignificantLocationChanges];
     

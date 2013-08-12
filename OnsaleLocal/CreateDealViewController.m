@@ -106,6 +106,15 @@
     [self keyboardControls:self.keyboardControls selectedField:textField inDirection:nil];
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    return YES;
+}
+
 
 
 - (IBAction)camaraButtonPressed:(id)sender {

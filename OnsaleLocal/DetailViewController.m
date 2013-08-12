@@ -241,15 +241,15 @@
     }
  */
 }
-/*
+
 -(void)containerFinishedUpdating:(NSNotification*) notification{
     Container* container = [Container theContainer];
     NSLog(@"%@",[NSString stringWithFormat:@"Location: %@, %@ %@; Search Radius: %d miles;", container.cityString, container.stateString, container.countryString, container.radius]);
-    self.autoScrollLabel.textColor = [UIColor blackColor];
+   // self.autoScrollLabel.textColor = [UIColor blackColor];
     NSString* text = [NSString stringWithFormat:@"Location: %@, %@ %@; Search Radius: %d miles;", container.cityString, container.stateString, container.countryString, container.radius];
-    self.autoScrollLabel.text = text;
+    //self.autoScrollLabel.text = text;
 }
- */
+ 
 - (CGFloat) heightForString: (NSString*) string withFont: (UIFont*) font{
 #warning must make this dynamic!
         return [string sizeWithFont:font constrainedToSize:CGSizeMake(302, 999) lineBreakMode:NSLineBreakByWordWrapping].height;
