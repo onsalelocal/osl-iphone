@@ -65,7 +65,14 @@
         MKPointAnnotation* annotation = [[MKPointAnnotation alloc]init];
         annotation.coordinate = CLLocationCoordinate2DMake([dealDict[DEAL_LAT]doubleValue],  [dealDict[DEAL_LONG] doubleValue]);
         [self.mapView addAnnotation:annotation];
-        
+        if(dealDict[STORE_URL]){
+            
+        }else{
+            self.visitStoreButton.userInteractionEnabled = NO;
+            self.visitStoreButton.backgroundColor = [UIColor grayColor];
+            //self.visitStoreButton setTitle:@"Store Website not Provided" forState:<#(UIControlState)#>
+            self.visitStoreButton.hidden = YES;
+        }
 
         
     }

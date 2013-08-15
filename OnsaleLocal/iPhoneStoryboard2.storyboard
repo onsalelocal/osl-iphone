@@ -344,11 +344,11 @@
             </objects>
             <point key="canvasLocation" x="2111" y="-112"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Change Location-->
         <scene sceneID="PAU-qZ-102">
             <objects>
                 <navigationController definesPresentationContext="YES" id="SlZ-DX-RRm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gh5-2L-h6e"/>
+                    <tabBarItem key="tabBarItem" title="Change Location" id="gh5-2L-h6e"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ga-cB-5br">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -618,7 +618,7 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ile-db-FVF">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="M3X-A1-vUB"/>
+                                    <constraint firstAttribute="height" constant="30" type="user" id="M3X-A1-vUB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -626,7 +626,7 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Change Location? Type in an Address to Select a New Location.  " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="uSe-8V-aRc">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="khP-2p-dK4"/>
+                                    <constraint firstAttribute="height" constant="53" type="user" id="khP-2p-dK4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -647,7 +647,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uSe-8V-aRc" firstAttribute="leading" secondItem="7je-ZQ-5GI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0PH-lG-tLg"/>
-                            <constraint firstAttribute="bottom" secondItem="Ile-db-FVF" secondAttribute="bottom" constant="177" id="1g2-2l-N8a"/>
                             <constraint firstItem="0Cg-gp-zUX" firstAttribute="top" secondItem="7je-ZQ-5GI" secondAttribute="top" type="default" id="4Qe-FH-aCN"/>
                             <constraint firstAttribute="trailing" secondItem="OP2-GA-jdj" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ed6-nd-YjW"/>
                             <constraint firstItem="56m-U8-JMF" firstAttribute="bottom" secondItem="7je-ZQ-5GI" secondAttribute="bottom" type="default" id="IR0-Xb-3Ng"/>
@@ -655,9 +654,10 @@
                             <constraint firstAttribute="trailing" secondItem="Ile-db-FVF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ws5-YL-lI4"/>
                             <constraint firstItem="56m-U8-JMF" firstAttribute="trailing" secondItem="7je-ZQ-5GI" secondAttribute="trailing" type="default" id="ZQp-hb-elz"/>
                             <constraint firstItem="Ile-db-FVF" firstAttribute="leading" secondItem="7je-ZQ-5GI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Zv0-Sp-1oa"/>
+                            <constraint firstItem="uSe-8V-aRc" firstAttribute="top" secondItem="7je-ZQ-5GI" secondAttribute="top" constant="343" type="user" id="aiu-Ql-8xC"/>
                             <constraint firstItem="vML-8v-uLB" firstAttribute="top" secondItem="7je-ZQ-5GI" secondAttribute="top" constant="80" id="bvn-Oq-Hbf"/>
                             <constraint firstItem="56m-U8-JMF" firstAttribute="leading" secondItem="7je-ZQ-5GI" secondAttribute="leading" type="default" id="cP7-Vu-4rk"/>
-                            <constraint firstAttribute="bottom" secondItem="uSe-8V-aRc" secondAttribute="bottom" constant="59" id="cmV-4P-QQb"/>
+                            <constraint firstItem="Ile-db-FVF" firstAttribute="top" secondItem="7je-ZQ-5GI" secondAttribute="top" constant="248" type="user" id="h80-bx-75g"/>
                             <constraint firstItem="OP2-GA-jdj" firstAttribute="leading" secondItem="7je-ZQ-5GI" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="k9p-pL-put"/>
                             <constraint firstAttribute="trailing" secondItem="vML-8v-uLB" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kCm-Mj-aNz"/>
                             <constraint firstItem="0Cg-gp-zUX" firstAttribute="trailing" secondItem="7je-ZQ-5GI" secondAttribute="trailing" type="default" id="lgV-kx-QX9"/>
@@ -912,7 +912,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Agc-os-9i4">
+                            <searchBar contentMode="redraw" placeholder="Search" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Agc-os-9i4">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" type="user" id="lFM-Ea-Ref"/>
                                 </constraints>
@@ -1223,7 +1223,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StoreCommentsCell" rowHeight="66" id="grz-ak-mRh" customClass="StoreCommentCell">
-                                        <rect key="frame" x="0.0" y="46" width="320" height="68"/>
+                                        <rect key="frame" x="0.0" y="46" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="280" height="65"/>
@@ -2961,6 +2961,7 @@
                                             <outlet property="phone" destination="0qr-Kq-woU" id="HS9-dZ-wlo"/>
                                             <outlet property="storeAddress" destination="4t2-9e-VyT" id="v20-4S-5ur"/>
                                             <outlet property="storeName" destination="Uji-8V-LZp" id="p8n-N8-oJ0"/>
+                                            <outlet property="visitStoreButton" destination="soC-WM-LU9" id="9TB-fI-W7k"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="reviewsCell" rowHeight="160" id="fLA-tf-fUB" customClass="ReviewsCell">
@@ -3107,11 +3108,11 @@
             </objects>
             <point key="canvasLocation" x="1072" y="-1893"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Me-->
         <scene sceneID="zgo-ep-DkF">
             <objects>
                 <navigationController storyboardIdentifier="" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uin-V5-1s0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Yhh-p7-gfV"/>
+                    <tabBarItem key="tabBarItem" title="Me" id="Yhh-p7-gfV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A1C-lE-AkD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3425,6 +3426,7 @@
                 <relationship kind="outlet" name="phone" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="storeAddress" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="storeName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="visitStoreButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="TagsTableViewCell" superclassName="UITableViewCell">

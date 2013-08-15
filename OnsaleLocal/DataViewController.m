@@ -18,12 +18,13 @@
 #import "UICollectionViewWaterfallLayout.h"
 #import <ImageIO/ImageIO.h>
 #import "SizeObject.h"
+#import "NSString+MD5.h"
 
 #define CELL_TITLE_LABEL_FONT [UIFont fontWithName:@"Helvetica-Bold" size:14]
 #define CELL_DESCRIPTION_LABEL_FONT [UIFont fontWithName:@"Helvetica" size:12]
 #define IMAGEVIEW_WIDTH 140.0
 #define CELL_MAX_SIZE CGSizeMake(IMAGEVIEW_WIDTH, 9999)
-#define LABEL_MAX_SIZE CGSizeMake(IMAGEVIEW_WIDTH-4, 999)
+#define LABEL_MAX_SIZE CGSizeMake(IMAGEVIEW_WIDTH-6, 999)
 
 
 @interface DataViewController ()<UICollectionViewDelegateWaterfallLayout, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
@@ -34,6 +35,7 @@
 @property (strong, nonatomic) NSMutableDictionary* sizes;
 @property (assign, nonatomic) CGFloat cellWidth;
 @property (strong, nonatomic) NSArray* cellHeights;
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
 
 @end
 
@@ -66,6 +68,10 @@
                 //NSLog(@"%@", dealID);
                 //NSValue* v = [NSValue valueWithCGSize:newImageSize];
                 SizeObject* s = [[SizeObject alloc]init];
+                CGSize imageSize = CGSizeMake([d[DEAL_IMAGE_WIDTH] floatValue], [d[DEAL_IMAGE_HEIGHT] floatValue]);
+                NSLog (@"%@", NSStringFromCGSize(imageSize));
+                [s setImageSize:imageSize withMaxWidth:IMAGEVIEW_WIDTH];
+                NSLog (@"%@", NSStringFromCGSize(s.imageSize));
                 s.titleSize = [d[DEAL_TITLE] sizeWithFont:CELL_TITLE_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
                 NSString* temp;
                 if([d[DEAL_PRICE] floatValue]){
@@ -76,8 +82,8 @@
                     NSLog(@"%@",d[DEAL_PRICE]);
                     temp = d[DEAL_PRICE];
                 }
-                s.descriptionSize = [temp sizeWithFont:CELL_TITLE_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
-                s.storeNameSize = [d[DEAL_STORE] sizeWithFont:CELL_TITLE_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+                s.descriptionSize = [temp sizeWithFont:CELL_DESCRIPTION_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+                s.storeNameSize = [d[DEAL_STORE] sizeWithFont:CELL_DESCRIPTION_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
                 
                 NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
                 formatter.roundingIncrement = [NSNumber numberWithDouble:0.01];
@@ -88,7 +94,7 @@
                 CGFloat distance = [here distanceFromLocation:there];
                 NSString* text = [NSString stringWithFormat: @"%@ Mi",[formatter stringFromNumber:[NSNumber numberWithFloat:distance]]];
                 
-                s.distanceSize = [text sizeWithFont:CELL_TITLE_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
+                s.distanceSize = [text sizeWithFont:CELL_DESCRIPTION_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];
                 [self.sizes setValue:s forKey:d[DEAL_ID]];
                 
                 //});
@@ -100,6 +106,8 @@
             count++;
         }
         [self.collectionView reloadData];
+        [self.refreshControl endRefreshing];
+        [self.refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"Pull To Update"]];
     }
 }
 
@@ -194,6 +202,10 @@
     layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
     layout.delegate = self;
     self.collectionView.collectionViewLayout = layout;
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    [self.refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"Pull To Update"]];
+    [self.refreshControl addTarget:self action:@selector(refreshControlAction:) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:self.refreshControl];
     
     /*
     if(self.searchObject){
@@ -220,6 +232,16 @@
         //radius addition handled elsewhere
     }
      */
+}
+
+-(void) refreshControlAction:(UIRefreshControl*)refreshControl{
+    [self.refreshControl beginRefreshing];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc]initWithString:@"Updating..."];
+    NSLog(@"Refresh Pulled");
+    NSString* encodedString = [self.currentQuery md5];
+    [[EGOCache globalCache]removeCacheForKey:encodedString];
+    [self refresh:self];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -281,6 +303,7 @@
     for(UIView* v in cell.contentView.subviews){
         [v removeFromSuperview];
     }
+
     [cell.contentView addSubview:cell.pictureImageView];
     [cell.contentView addSubview:cell.dealName];
     [cell.contentView addSubview:cell.dealShortDescription];
@@ -294,6 +317,9 @@
     SizeObject* s = self.sizes[itemID];
     CGSize size = s.imageSize;
     cell.pictureImageView.frame = CGRectMake(0, 0, size.width , size.height);
+    //cell.pictureImageView.backgroundColor = [UIColor redColor];
+    NSLog(@"%@",NSStringFromCGSize(s.imageSize));
+    NSLog(@"%@",NSStringFromCGRect(cell.pictureImageView.frame));
     CGSize titleLabelSize = s.titleSize;
     CGSize descriptionLabelSize = s.descriptionSize;
 
@@ -311,17 +337,20 @@
     cell.dealShortDescription.font = CELL_DESCRIPTION_LABEL_FONT;
     cell.dealShortDescription.lineBreakMode = NSLineBreakByWordWrapping;
     cell.dealShortDescription.numberOfLines = 0;
+    //cell.dealShortDescription.backgroundColor = [UIColor grayColor];
     
-    cell.storeName.frame = CGRectMake(2, CGRectGetMaxY(cell.dealShortDescription.frame),IMAGEVIEW_WIDTH-4 , 20);
+    cell.storeName.frame = CGRectMake(2, CGRectGetMaxY(cell.dealShortDescription.frame),s.storeNameSize.width , s.storeNameSize.height);
     cell.storeName.backgroundColor = [UIColor clearColor];
     cell.storeName.font = CELL_DESCRIPTION_LABEL_FONT;
     cell.storeName.lineBreakMode = NSLineBreakByWordWrapping;
     cell.storeName.numberOfLines = 0;
+    //cell.storeName.backgroundColor = [UIColor greenColor];
     
-    cell.distanceToLocation.frame = CGRectMake(2, CGRectGetMaxY(cell.storeName.frame), IMAGEVIEW_WIDTH-4, 20);
+    cell.distanceToLocation.frame = CGRectMake(2, CGRectGetMaxY(cell.storeName.frame), s.distanceSize.width, s.distanceSize.height);
     cell.distanceToLocation.backgroundColor = [UIColor clearColor];
     cell.distanceToLocation.font = CELL_DESCRIPTION_LABEL_FONT;
     cell.distanceToLocation.lineBreakMode = NSLineBreakByWordWrapping;
+    //cell.distanceToLocation.backgroundColor = [UIColor redColor];
     Deal* d = [[Deal alloc]initWithContentsOfDictionary:dealDict];
     cell.dealName.text = d.name;
     if([dealDict[DEAL_PRICE] floatValue]){
@@ -349,7 +378,8 @@
     }
     __block NSIndexPath *path = indexPath;
     __weak DealCollectionViewCell *cellCopy = cell;
-    cell.backgroundColor = [UIColor orangeColor];
+    //cell.backgroundColor = [UIColor orangeColor];
+    
     cell.pictureImageView.contentMode = UIViewContentModeScaleAspectFit;
     [cell.pictureImageView setImageWithURL:[NSURL URLWithString: d.imageURL] placeholderImage:[UIImage imageNamed:@"downloading80.jpeg"] completed:^(UIImage* image, NSError* error, SDImageCacheType cacheType){
         

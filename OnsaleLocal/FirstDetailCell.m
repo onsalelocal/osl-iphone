@@ -9,6 +9,7 @@
 #import "FirstDetailCell.h"
 #import "OnsaleLocalConstants.h"
 #import "SDWebImage/UIImageView+WebCache.h"
+#import "SizeObject.h"
 
 #define DEAL_NAME_FONT [UIFont fontWithName:@"Helvetica" size:15]
 
@@ -58,7 +59,17 @@
         self.dealNameLabel.backgroundColor = [UIColor clearColor];
         self.dealNameLabel.font = DEAL_NAME_FONT;
         [self addSubview:self.dealNameLabel];
-        self.dealImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, self.dealNameLabel.frame.origin.y+self.dealNameLabel.frame.size.height+8, 300, 300)];
+        CGSize size;
+        if (dealDict[DEAL_IMAGE_HEIGHT]) {
+            size = CGSizeMake([dealDict[DEAL_IMAGE_WIDTH] floatValue], [dealDict[DEAL_IMAGE_HEIGHT] floatValue]);
+
+        }
+        else{
+            size = CGSizeMake(300, 300);
+        }
+        SizeObject* ob = [[SizeObject alloc]init];
+        [ob setImageSize:size withMaxWidth:300];
+        self.dealImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, self.dealNameLabel.frame.origin.y+self.dealNameLabel.frame.size.height+8, ob.imageSize.width, ob.imageSize.height)];
         self.dealImageView.contentMode = UIViewContentModeScaleAspectFit;
         NSString* largeImageURL = dealDict[DEAL_LARGE_IMAGE_URL] ? dealDict[DEAL_LARGE_IMAGE_URL] : dealDict[DEAL_IMAGE_URL];
         [self.dealImageView setImageWithURL:[NSURL URLWithString:largeImageURL] placeholderImage:nil];

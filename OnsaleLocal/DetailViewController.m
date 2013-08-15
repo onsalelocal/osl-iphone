@@ -29,6 +29,7 @@
 #import "MKMapView+ZoomLevel.h"
 #import "ReviewView.h"
 #import "ReviewsCell.h"
+#import "SizeObject.h"
 
 
 #define DEAL_NAME_FONT              [UIFont fontWithName:@"Helvetica-Bold" size:14]
@@ -246,12 +247,10 @@
     Container* container = [Container theContainer];
     NSLog(@"%@",[NSString stringWithFormat:@"Location: %@, %@ %@; Search Radius: %d miles;", container.cityString, container.stateString, container.countryString, container.radius]);
    // self.autoScrollLabel.textColor = [UIColor blackColor];
-    NSString* text = [NSString stringWithFormat:@"Location: %@, %@ %@; Search Radius: %d miles;", container.cityString, container.stateString, container.countryString, container.radius];
     //self.autoScrollLabel.text = text;
 }
  
 - (CGFloat) heightForString: (NSString*) string withFont: (UIFont*) font{
-#warning must make this dynamic!
         return [string sizeWithFont:font constrainedToSize:CGSizeMake(302, 999) lineBreakMode:NSLineBreakByWordWrapping].height;
 }
 
@@ -269,7 +268,17 @@
     if(indexPath.row == 0){
         CGFloat height = [self heightForString:self.dealDict[DEAL_TITLE] withFont:DEAL_NAME_FONT];
         height += 10 + [self heightForString:self.dealDict[DEAL_PRICE] withFont:DEAL_PRICE_FONT];
-        return height + 316 + 60 +8;
+        CGSize size;
+        if (self.dealDict[DEAL_IMAGE_HEIGHT]) {
+            size = CGSizeMake([self.dealDict[DEAL_IMAGE_WIDTH] floatValue], [self.dealDict[DEAL_IMAGE_HEIGHT] floatValue]);
+            
+        }
+        else{
+            size = CGSizeMake(300, 300);
+        }
+        SizeObject* ob = [[SizeObject alloc]init];
+        [ob setImageSize:size withMaxWidth:300];
+        return height + ob.imageSize.height + 60 +8;
     }
     else if(indexPath.row == 1){//shared by
         return 110;
@@ -278,7 +287,12 @@
         return [self heightForTags];
     }
     else if(indexPath.row == 3){//store
-        return 180;
+        if(self.dealDict[STORE_URL]){
+            return 180;
+        }
+        else{
+            return 180-42;
+        }
 
     }
     else if(indexPath.row == 4){//reviews

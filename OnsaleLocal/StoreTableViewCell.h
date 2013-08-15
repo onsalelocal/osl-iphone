@@ -18,5 +18,6 @@
 @property (strong, nonatomic) CLLocation* location;
 @property (strong, nonatomic) NSDictionary* dealDict;
 @property (weak, nonatomic) IBOutlet UILabel *cityAndState;
+@property (weak, nonatomic) IBOutlet UIButton *visitStoreButton;
 
 @end

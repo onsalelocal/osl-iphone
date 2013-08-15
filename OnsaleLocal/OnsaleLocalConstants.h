@@ -33,6 +33,8 @@
 #define DEAL_DESCRIPTION @"description"
 #define DEAL_LARGE_IMAGE_URL @"largeImg"
 #define DEAL_SHARED_BY @"submitter"
+#define DEAL_IMAGE_WIDTH @"width"
+#define DEAL_IMAGE_HEIGHT @"height"
 
 #warning NON OF THESE DEFINES ARE VERIFIED
 #define STORE_FOLLOWER_COUNT @"followerCount"
@@ -49,6 +51,7 @@
 #define STORE_ID @"id"
 #define STORE_LAT @"latitude"
 #define STORE_LONG @"longitude"
+#define STORE_URL @"url"
 
 #define CATEGORY_NAME @"name"
 #define CATEGORY_OFFER_COUNT @"offerCount"

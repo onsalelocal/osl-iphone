@@ -17,5 +17,6 @@
 @property (assign, nonatomic) CGSize imageSize;
 
 - (CGFloat) totalHeightForAllLabels;
+-(void)setImageSize:(CGSize)imageSize withMaxWidth:(CGFloat) maxWidth;
 
 @end
