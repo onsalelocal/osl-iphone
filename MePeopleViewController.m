@@ -32,7 +32,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.currentQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/user/followings?format=json&userId=%@",[[NSUserDefaults standardUserDefaults] valueForKey:USER_ID] ];
+    NSString* userID = self.otherUser ? self.otherUser : [[NSUserDefaults standardUserDefaults] valueForKey:USER_ID];
+    self.nextQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/user/followings?format=json&userId=%@",userID];
 }
 
 -(void)setResultsArrayOfDictionaries:(NSArray *)resultsArrayOfDictionaries{
@@ -54,18 +55,31 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
     return self.resultsArrayOfDictionaries.count;
 }
 
 -(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%@", self.restorationIdentifier);
     FollowingTableViewCell *cell = (FollowingTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"FollowingTableViewCell" forIndexPath:indexPath];
-    NSString* urlString = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/details?format=json&userId=%@",self.resultsArrayOfDictionaries[indexPath.row][USER_ID] ];
-    NSLog(@"%@", urlString);
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        cell.details = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:urlString ]];
-        NSLog(@"%@",cell.details);
-    });
+    //NSString* urlString = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/details?format=json&userId=%@",self.resultsArrayOfDictionaries[indexPath.row][USER_ID] ];
+    //NSLog(@"%@", urlString);
+    //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //    cell.details = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:urlString ]];
+    //    NSLog(@"%@",cell.details);
+    //});
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString* uid = nil;//self.resultsArrayOfDictionaries[indexPath.row][USER_ID];
+    uid = @"26deae9d-3f83-4acb-ae99-5a09b3a4dc7e";
+    if(uid.length){
+        RootViewController* rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"me"];
+        rvc.info = uid;
+        [self.navigationController pushViewController:rvc animated:YES];
+        NSLog(@"Pushed OtherUserVC");
+    }
 }
 @end

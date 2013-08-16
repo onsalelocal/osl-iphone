@@ -37,7 +37,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     self.nextQuery = @"http://onsalelocal.com/osl2/ws/user/my-fav-stores?format=json";
+    if(self.otherUser){
+        self.nextQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/user-fav-stores?userId=%@",self.otherUser];
+    }
     [self refresh:self];
 }
 

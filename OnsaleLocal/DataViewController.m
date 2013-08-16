@@ -68,8 +68,11 @@
                 //NSLog(@"%@", dealID);
                 //NSValue* v = [NSValue valueWithCGSize:newImageSize];
                 SizeObject* s = [[SizeObject alloc]init];
-                CGSize imageSize = CGSizeMake([d[DEAL_IMAGE_WIDTH] floatValue], [d[DEAL_IMAGE_HEIGHT] floatValue]);
-                NSLog (@"%@", NSStringFromCGSize(imageSize));
+                CGSize imageSize = CGSizeZero;
+                if([d[DEAL_IMAGE_WIDTH] floatValue]){
+                    imageSize = CGSizeMake([d[DEAL_IMAGE_WIDTH] floatValue], [d[DEAL_IMAGE_HEIGHT] floatValue]);
+                    NSLog (@"%@", NSStringFromCGSize(imageSize));
+                }
                 [s setImageSize:imageSize withMaxWidth:IMAGEVIEW_WIDTH];
                 NSLog (@"%@", NSStringFromCGSize(s.imageSize));
                 s.titleSize = [d[DEAL_TITLE] sizeWithFont:CELL_TITLE_LABEL_FONT constrainedToSize:LABEL_MAX_SIZE lineBreakMode:NSLineBreakByWordWrapping];

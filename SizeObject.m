@@ -11,9 +11,13 @@
 @implementation SizeObject
 
 -(void)setImageSize:(CGSize)imageSize withMaxWidth:(CGFloat) maxWidth{
-    CGFloat ratio = imageSize.width/imageSize.height;
-    CGFloat ratio2 = imageSize.width/maxWidth;
-    _imageSize = CGSizeMake(maxWidth, imageSize.height/ratio2);
+    if(imageSize.height != 0 && imageSize.width != 0) {
+        CGFloat ratio2 = imageSize.width/maxWidth;
+        _imageSize = CGSizeMake(maxWidth, imageSize.height/ratio2);
+    }
+    else{
+        _imageSize = CGSizeMake(maxWidth, maxWidth);
+    }
 }
 
 - (CGSize) imageSize{

@@ -31,7 +31,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.currentQuery = @"http://onsalelocal.com/osl2/ws/user/my-offers?format=json";
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.nextQuery = @"http://onsalelocal.com/osl2/ws/user/my-offers?format=json";
+    if(self.otherUser){
+        self.nextQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/offers?userId=%@",self.otherUser];
+    }
+    [self refresh:self];
 }
 
 - (void)didReceiveMemoryWarning

@@ -35,7 +35,10 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.currentQuery = @"http://onsalelocal.com/osl2/ws/user/my-fav-offers?format=json";
+    self.nextQuery = @"http://onsalelocal.com/osl2/ws/user/my-fav-offers?format=json";
+    if(self.otherUser){
+        //self.currentQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/offers?userId=%@",self.otherUser];
+    }
     [self refresh:self];
 }
 

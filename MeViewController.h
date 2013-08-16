@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followerCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) NSString* otherUser;
 
 @end
