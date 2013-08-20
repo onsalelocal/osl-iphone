@@ -121,19 +121,6 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "LocationManager.m"
-         timestampString = "392075552.312983"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
-         landmarkName = "-locationManager:didUpdateLocations:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
@@ -190,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398384760.443065"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "573"
-         endingLineNumber = "573"
+         startingLineNumber = "585"
+         endingLineNumber = "585"
          landmarkName = "@implementation DetailViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -203,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398384760.443065"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "582"
-         endingLineNumber = "582"
+         startingLineNumber = "594"
+         endingLineNumber = "594"
          landmarkName = "-connection:didReceiveData:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398384760.443065"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "592"
-         endingLineNumber = "592"
+         startingLineNumber = "604"
+         endingLineNumber = "604"
          landmarkName = "@implementation DetailViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -229,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398292261.525262"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "175"
-         endingLineNumber = "175"
+         startingLineNumber = "178"
+         endingLineNumber = "178"
          landmarkName = "-loadView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -242,11 +229,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398384760.443065"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "378"
-         endingLineNumber = "378"
+         startingLineNumber = "382"
+         endingLineNumber = "382"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -307,11 +294,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398384760.443065"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "339"
-         endingLineNumber = "339"
+         startingLineNumber = "342"
+         endingLineNumber = "342"
          landmarkName = "-heightForTags"
          landmarkType = "5">
       </FileBreakpoint>
@@ -736,11 +723,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/FirstDetailCell.m"
-         timestampString = "398292261.525262"
+         timestampString = "398717260.15405"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "175"
+         endingLineNumber = "175"
          landmarkName = "-favButtonPressed"
          landmarkType = "5">
       </FileBreakpoint>
@@ -957,11 +944,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398292261.525262"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
          landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1009,11 +996,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/DetailViewController.m"
-         timestampString = "398292261.525262"
+         timestampString = "398721391.879463"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
+         startingLineNumber = "118"
+         endingLineNumber = "118"
          landmarkName = "-callPhone:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1184,6 +1171,84 @@
          startingLineNumber = "45"
          endingLineNumber = "45"
          landmarkName = "-connection:didReceiveData:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "LocationManager.m"
+         timestampString = "398712694.631907"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "56"
+         endingLineNumber = "56"
+         landmarkName = "-locationManager:didUpdateLocations:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "DealCommentViewController.m"
+         timestampString = "398721577.253484"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "97"
+         endingLineNumber = "97"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "DealCommentViewController.m"
+         timestampString = "398721578.895845"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "96"
+         endingLineNumber = "96"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "OnsaleLocal/DetailViewController.m"
+         timestampString = "398726172.222479"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "626"
+         endingLineNumber = "626"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "OnsaleLocal/DetailViewController.m"
+         timestampString = "398726313.95579"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "636"
+         endingLineNumber = "636"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "DealCommentViewController.m"
+         timestampString = "398728821.871961"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "135"
+         endingLineNumber = "135"
+         landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

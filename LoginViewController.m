@@ -177,7 +177,7 @@
         d = [NSJSONSerialization JSONObjectWithData:self.loginData options:NSJSONReadingMutableLeaves|NSJSONReadingMutableContainers error:&error];
         if(error){
             NSLog(@"%@", error.localizedDescription);
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error signing in to server" message:@"Username and password dont match.  Please try again" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"OK", nil];
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Error signing in to server" message:@"Please try again" delegate:self cancelButtonTitle:@"Skip" otherButtonTitles:@"OK", nil];
             [alert show];
         }else{
             [[NSUserDefaults standardUserDefaults]setBool:YES forKey:USER_LOGGED_IN];
@@ -186,6 +186,7 @@
             [[NSUserDefaults standardUserDefaults] setValue:self.passwordTextField.text forKey:USER_PASSWORD];
             [[NSUserDefaults standardUserDefaults] setValue:d[USER_ID] forKey:USER_ID];
             [self.loginDelegate didFinishLoggingIn:self];
+            [self prepCustomTabController];
         }
     }
     else if (connection == self.fbConnection){
@@ -206,9 +207,10 @@
             [[NSUserDefaults standardUserDefaults] setValue:d[USER_FIRST_NAME] forKey:USER_FIRST_NAME];
             [[NSUserDefaults standardUserDefaults] setValue:d[USER_LAST_NAME] forKey:USER_LAST_NAME];
             [self.loginDelegate didFinishLoggingIn:self];
+            [self prepCustomTabController];
         }
     }
-    [self prepCustomTabController];
+    
 }
 
 -(void) prepCustomTabController{

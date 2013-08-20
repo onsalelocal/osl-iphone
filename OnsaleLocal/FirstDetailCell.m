@@ -11,6 +11,7 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "SizeObject.h"
 
+
 #define DEAL_NAME_FONT [UIFont fontWithName:@"Helvetica" size:15]
 
 @interface FirstDetailCell()<NSURLConnectionDataDelegate, NSURLConnectionDelegate>
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) UIView* greyView;
 @property (strong, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) NSMutableData* data;
+
 
 @end
 
@@ -108,19 +110,19 @@
         
         self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.shareButton.frame = CGRectMake(96, 8, 40, 40);
-        [self.shareButton addTarget:self action:@selector(shareButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.shareButton addTarget:self action:@selector(commentButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.shareButton setImage:[UIImage imageNamed:@"btn_img_comment_51x46"] forState:UIControlStateNormal];
         [self.greyView addSubview:self.shareButton];
         
         self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.commentButton.frame = CGRectMake(184, 8, 40, 40);
-        [self.commentButton addTarget:self action:@selector(commentButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.commentButton addTarget:self action:@selector(shareButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.commentButton setImage:[UIImage imageNamed:@"btn_img_connect_47x45"] forState:UIControlStateNormal];
         [self.greyView addSubview:self.commentButton];
         
         self.phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.phoneButton.frame = CGRectMake(272, 8, 40, 40);
-        [self.phoneButton addTarget:self action:@selector(phoneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.phoneButton addTarget:self action:@selector( phoneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         [self.phoneButton setImage:[UIImage imageNamed:@"btn_img_tel_51x50"] forState:UIControlStateNormal];
         [self.greyView addSubview:self.phoneButton];
         
@@ -132,6 +134,7 @@
 }
 
 -(void)commentButtonPressed{
+    /*
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@"Error"
                               message:@"Not Implemeted Yet"
@@ -139,10 +142,14 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
     [alertView show];
-
+     */
+    
+    [self.cellMethodsDelegate commentPressed];
 }
 
 -(void)shareButtonPressed{
+    [self.cellMethodsDelegate sharePressed];
+    /*
     UIAlertView *alertView = [[UIAlertView alloc]
                               initWithTitle:@"Error"
                               message:@"Not Implemeted Yet"
@@ -150,6 +157,7 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
     [alertView show];
+     */
 
 }
 

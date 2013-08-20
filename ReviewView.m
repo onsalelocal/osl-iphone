@@ -33,7 +33,7 @@
     if(infoDict!=_infoDict){
         _infoDict = infoDict;
         self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(8, 0, 149, 21)];
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",infoDict[USER_FIRST_NAME], infoDict[USER_LAST_NAME]];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",infoDict[@"user"][USER_FIRST_NAME], infoDict[@"user"][USER_LAST_NAME]];
         self.nameLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         [self addSubview:self.nameLabel];
 #warning fix this label's text

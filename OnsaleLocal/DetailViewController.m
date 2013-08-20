@@ -30,6 +30,7 @@
 #import "ReviewView.h"
 #import "ReviewsCell.h"
 #import "SizeObject.h"
+#import "DealCommentViewController.h"
 
 
 #define DEAL_NAME_FONT              [UIFont fontWithName:@"Helvetica-Bold" size:14]
@@ -39,7 +40,8 @@
 
 
 
-@interface DetailViewController ()<MapViewControllerDelegate,TTTAttributedLabelDelegate, MapPressed, UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, MKMapViewDelegate>
+
+@interface DetailViewController ()<MapViewControllerDelegate,TTTAttributedLabelDelegate, MapPressed, UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, MKMapViewDelegate,cellMethods>
 
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomBar;
 @property (strong, nonatomic) NSArray* subCategories;
@@ -61,6 +63,7 @@
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (strong, nonatomic) NSMutableArray* listOfReviewViews;
 @property (strong, nonatomic) NSArray* fakeReviews;
+//@property (strong, nonatomic) id<cellMethods> cellMethodsDelegate;
 
 
 - (IBAction)callPhone:(id)sender;
@@ -93,7 +96,7 @@
 - (void)setCommentsDealDict:(NSDictionary *)commentsDealDict{
     //if(commentsDealDict != _commentsDealDict){
         _commentsDealDict = commentsDealDict;
-    for(NSDictionary* d in self.fakeReviews){//commentsDealDict[@"items"]){
+    for(NSDictionary* d in self.commentsDealDict[@"items"]){//commentsDealDict[@"items"]){
             ReviewView* rv = [[ReviewView alloc]initWithInfoDict:d];
             [self.listOfReviewViews addObject:rv];
         }
@@ -194,13 +197,13 @@
         self.offerDetailsConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         
         
-        self.query = [NSString stringWithFormat:@"http://onsalelocal.com/osl/ws/v2/offer/like/users?format=json&offerId=%@", self.offerID];
+        self.query = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/like/users?format=json&offerId=%@", self.offerID];
         NSLog(@"%@", self.query);
         url = [NSURL URLWithString:self.query];
         [request setURL:url];
         self.userLikeConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
         
-        self.query = [NSString stringWithFormat:@"http://onsalelocal.com/osl/ws/v2/offer/comments?format=json&offerId=%@", self.offerID];
+        self.query = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/comments?format=json&offerId=%@", self.offerID];
         NSLog(@"%@", self.query);
         url = [NSURL URLWithString:self.query];
         [request setURL:url];
@@ -369,6 +372,7 @@
         if(!cell){
             cell = [[FirstDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:s];
         }
+        ((FirstDetailCell*)cell).cellMethodsDelegate = self;
         NSDictionary* d = self.masterDealDict ? self.masterDealDict : self.dealDict;
         ((FirstDetailCell*) cell).dealDict = d;
 
@@ -446,7 +450,7 @@
     if([segue.identifier isEqualToString:@"tofirsttop"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         FirstTopViewController* ftvc = (FirstTopViewController*)segue.destinationViewController;
-        NSString* query = [NSString stringWithFormat:@"http://onsalelocal.com/osl/ws/offer/search?format=json&merchant=%@",[(NSString*)self.dealDict[DEAL_STORE] gtm_stringByEscapingForURLArgument]];
+        NSString* query = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/offer/search?format=json&merchant=%@",[(NSString*)self.dealDict[DEAL_STORE] gtm_stringByEscapingForURLArgument]];
         
         
         
@@ -476,6 +480,10 @@
         WebViewController* wvc = (WebViewController*) segue.destinationViewController;
         wvc.url = [NSURL URLWithString: sourceURLString];
         
+    }
+    if([segue.identifier isEqualToString:@"dealComment"]){
+        DealCommentViewController* dcvc = (DealCommentViewController*)segue.destinationViewController;
+        dcvc.dealDict = self.dealDict;
     }
 }
 
@@ -526,7 +534,7 @@
 }
 
 #warning Fix what is put into the item like description
-- (void) sharePressed{
+-(void)sharePressed{
     InviteFriendsViewController* ivc = [self.storyboard instantiateViewControllerWithIdentifier:@"invite"];
     ivc.like = YES;
     ivc.itemLikeDescription = self.dealDict[DEAL_TITLE];
@@ -534,6 +542,10 @@
     [self.navigationController pushViewController:ivc animated:YES];
     
     
+}
+
+-(void)commentPressed{
+    [self performSegueWithIdentifier:@"dealComment" sender:self];
 }
 
 - (BOOL) set: (NSSet*) set containesDictionaryWithKey: (NSString*) key thatMatchesValue:(NSString*) value{
@@ -611,6 +623,7 @@
         NSError* error = nil;
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:self.userLikeData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error];
         self.userLikeDealDict = result;
+        NSLog(@"%@",self.userLikeDealDict);
     }
     if(connection == self.commentsConnection){
         NSLog(@"Succeeded! Received %d bytes of data",[self.commentsData
@@ -620,18 +633,19 @@
         NSError* error = nil;
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:self.commentsData options:NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error];
         self.commentsDealDict = result;
+        NSLog(@"%@",self.commentsDealDict);
     }
     
     if(self.dealDict && self.userLikeDealDict && self.commentsDealDict){
-        
+        /*
         self.masterDealDict = [[NSMutableDictionary alloc]init];
        
         [self.masterDealDict addEntriesFromDictionary:self.dealDict];
         [self.masterDealDict addEntriesFromDictionary:self.userLikeDealDict];
         [self.masterDealDict addEntriesFromDictionary:self.commentsDealDict];
+        */
         
-        
-        [[EGOCache globalCache] setObject:self.masterDealDict forKey:self.masterDealDict[DEAL_ID] withTimeoutInterval:10400];
+        //[[EGOCache globalCache] setObject:self.masterDealDict forKey:self.masterDealDict[DEAL_ID] withTimeoutInterval:10400];
         
     }
     

@@ -320,6 +320,7 @@
 		FCC857F51783A390007ADA91 /* UICollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC857F41783A38F007ADA91 /* UICollectionViewWaterfallLayout.m */; };
 		FCCA6E25179DF76D001D822F /* StoreImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCA6E24179DF76D001D822F /* StoreImageViewCell.m */; };
 		FCCA6E28179EEE98001D822F /* FollowingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCA6E27179EEE98001D822F /* FollowingTableViewCell.m */; };
+		FCD0E40717C3E7030019D0AA /* DealCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD0E40617C3E7030019D0AA /* DealCommentViewController.m */; };
 		FCD328A1179F4059006CE685 /* ReviewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD328A0179F4059006CE685 /* ReviewsCell.m */; };
 		FCD328A4179F448B006CE685 /* ReviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD328A3179F448B006CE685 /* ReviewView.m */; };
 		FCD328A717A1D260006CE685 /* StoreCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD328A617A1D260006CE685 /* StoreCommentCell.m */; };
@@ -782,6 +783,8 @@
 		FCCA6E24179DF76D001D822F /* StoreImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreImageViewCell.m; sourceTree = "<group>"; };
 		FCCA6E26179EEE98001D822F /* FollowingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingTableViewCell.h; sourceTree = "<group>"; };
 		FCCA6E27179EEE98001D822F /* FollowingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingTableViewCell.m; sourceTree = "<group>"; };
+		FCD0E40517C3E7030019D0AA /* DealCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealCommentViewController.h; sourceTree = "<group>"; };
+		FCD0E40617C3E7030019D0AA /* DealCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealCommentViewController.m; sourceTree = "<group>"; };
 		FCD3289F179F4059006CE685 /* ReviewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsCell.h; sourceTree = "<group>"; };
 		FCD328A0179F4059006CE685 /* ReviewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsCell.m; sourceTree = "<group>"; };
 		FCD328A2179F448B006CE685 /* ReviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewView.h; sourceTree = "<group>"; };
@@ -884,6 +887,8 @@
 				FC4CDDE617678470007BC360 /* LoginViewController.m */,
 				FCD7CB68175E92F3000D506B /* LocationManager.h */,
 				FCD7CB69175E92F3000D506B /* LocationManager.m */,
+				FCD0E40517C3E7030019D0AA /* DealCommentViewController.h */,
+				FCD0E40617C3E7030019D0AA /* DealCommentViewController.m */,
 				FCD7CB65175E56B0000D506B /* DealCollectionViewCell.h */,
 				FCD7CB66175E56B0000D506B /* DealCollectionViewCell.m */,
 				84E7D14E16E6773B00C0EB31 /* Resources */,
@@ -1989,6 +1994,7 @@
 				FCD328A717A1D260006CE685 /* StoreCommentCell.m in Sources */,
 				FCD328AA17A1DA0D006CE685 /* StoreCommentViewController.m in Sources */,
 				FCD328BE17A9B25C006CE685 /* StorePointAnnotation.m in Sources */,
+				FCD0E40717C3E7030019D0AA /* DealCommentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

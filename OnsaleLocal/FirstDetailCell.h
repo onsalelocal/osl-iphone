@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
 
 @interface FirstDetailCell : UITableViewCell
 
 @property (strong, nonatomic) NSDictionary* dealDict;
+@property (strong, nonatomic) id<cellMethods> cellMethodsDelegate;
 
 @end

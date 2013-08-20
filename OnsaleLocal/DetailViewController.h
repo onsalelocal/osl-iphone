@@ -9,6 +9,13 @@
 #import "ResultsTableViewController.h"
 #import "Deal.h"
 
+@protocol cellMethods <NSObject>
+
+-(void)commentPressed;
+-(void)sharePressed;
+
+@end
+
 @interface DetailViewController : UIViewController
 
 
