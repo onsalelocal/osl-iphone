@@ -385,12 +385,15 @@
         if(!cell){
             cell = [[SecondDetailCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ss];
         }
+        ((SecondDetailCell*)cell).dealDict = self.dealDict;
+        /*
         if(((NSString*)self.dealDict[DEAL_SHARED_BY]).length){
             //((SecondDetailCell*)cell).
         }
         else{
             
         }
+         */
         
     }
     else if (indexPath.row == 2){
@@ -661,4 +664,6 @@
     return nil;
 }
 
+- (IBAction)followButtonPressed:(id)sender {
+}
 @end

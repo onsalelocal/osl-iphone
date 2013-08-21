@@ -764,14 +764,6 @@
                                                         <constraint firstAttribute="height" constant="75" id="Ddo-XS-nQA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bF-dE-v3Q">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="fPb-x4-AWM"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnb-jU-pPz">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="pM9-fp-Rga"/>
@@ -800,18 +792,14 @@
                                         <constraints>
                                             <constraint firstItem="qYQ-em-JCi" firstAttribute="leading" secondItem="wiW-0R-hv6" secondAttribute="leading" constant="6" id="BFt-xf-cNf"/>
                                             <constraint firstAttribute="trailing" secondItem="ywA-jd-DIJ" secondAttribute="trailing" constant="9" id="EWJ-Yj-4HB"/>
-                                            <constraint firstItem="ywA-jd-DIJ" firstAttribute="top" secondItem="wiW-0R-hv6" secondAttribute="top" constant="5" id="GJU-9L-0bj"/>
-                                            <constraint firstItem="2bF-dE-v3Q" firstAttribute="leading" secondItem="qYQ-em-JCi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Mkx-pV-92y"/>
+                                            <constraint firstItem="ywA-jd-DIJ" firstAttribute="centerY" secondItem="qYQ-em-JCi" secondAttribute="centerY" type="default" id="Flt-yy-fHc"/>
                                             <constraint firstItem="wnb-jU-pPz" firstAttribute="top" secondItem="wiW-0R-hv6" secondAttribute="top" constant="20" type="default" id="NNf-wl-inL"/>
-                                            <constraint firstAttribute="bottom" secondItem="2bF-dE-v3Q" secondAttribute="bottom" constant="21" id="PtO-ql-cRu"/>
                                             <constraint firstItem="wnb-jU-pPz" firstAttribute="leading" secondItem="qYQ-em-JCi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="dUA-ai-luj"/>
                                             <constraint firstItem="qYQ-em-JCi" firstAttribute="top" secondItem="wiW-0R-hv6" secondAttribute="top" constant="13" id="iO4-NM-jzq"/>
-                                            <constraint firstItem="wnb-jU-pPz" firstAttribute="trailing" secondItem="2bF-dE-v3Q" secondAttribute="trailing" type="default" id="olH-mM-uDW"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="followingFollowerButton" destination="ywA-jd-DIJ" id="0fc-O4-JPo"/>
                                             <outlet property="imageView" destination="qYQ-em-JCi" id="ljL-A2-bE4"/>
-                                            <outlet property="locationLabel" destination="2bF-dE-v3Q" id="Edf-de-jrt"/>
                                             <outlet property="nameLabel" destination="wnb-jU-pPz" id="vdn-Sg-REQ"/>
                                         </connections>
                                     </tableViewCell>
@@ -2721,7 +2709,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="followButtonPressed:" destination="yue-Sy-2n1" eventType="touchUpInside" id="PLf-F7-ERW"/>
+                                                        <action selector="followButtonPressed:" destination="yue-Sy-2n1" eventType="touchUpInside" id="vJQ-H6-ekc"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2745,7 +2733,7 @@
                                             <constraint firstItem="f4u-vq-4LM" firstAttribute="leading" secondItem="1bL-t1-9ZV" secondAttribute="leading" type="user" id="yNs-2T-TKR"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="followButton" destination="miZ-LO-wmB" id="b5L-nJ-nph"/>
+                                            <outlet property="followButton" destination="miZ-LO-wmB" id="Gff-3U-HtK"/>
                                             <outlet property="fromWhoLabel" destination="s3c-pt-Efo" id="CBC-nq-je7"/>
                                             <outlet property="howLongAgoLabel" destination="gZ2-ju-Eli" id="mJH-yp-xxf"/>
                                             <outlet property="imageView" destination="f4u-vq-4LM" id="0Ly-4A-iHl"/>
@@ -3327,7 +3315,7 @@
             <relationships>
                 <relationship kind="outlet" name="followersLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="followingFollowerButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imageView1" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="likesLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
@@ -3571,9 +3559,6 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>

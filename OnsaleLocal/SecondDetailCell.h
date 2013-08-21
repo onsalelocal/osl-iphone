@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondDetailCell : UITableViewCell
+@interface SecondDetailCell : UITableViewCell <NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *fromWhoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *howLongAgoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
+@property (strong, nonatomic) NSDictionary* dealDict;
 
 - (IBAction)followButtonPressed:(id)sender;
 @end

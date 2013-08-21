@@ -74,6 +74,7 @@
 #define USER_LAST_NAME @"lastName"
 #define USER_ZIP_CODE @"zipcode"
 #define USER_ID @"id"
+#define USER @"user"
 
 #define FBSessionStateChangedNotification @"FBSessionStateChangedNotification"
 #define FB_LOGIN_SUCCESS @"FB_LOGIN_SUCCESS"

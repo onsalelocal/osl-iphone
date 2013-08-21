@@ -8,6 +8,7 @@
 
 #import "FollowingTableViewCell.h"
 #import "OnsaleLocalConstants.h"
+#import "UIImageView+WebCache.h"
 
 @implementation FollowingTableViewCell
 
@@ -31,11 +32,21 @@
     if(_details != details){
         _details = details;
         NSLog(@"%@",details);
+        /*
         dispatch_async(dispatch_get_main_queue(), ^{
             self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",details[USER_FIRST_NAME], details[USER_LAST_NAME]];
         });
+         */
         //self.locationLabel.text = [NSString stringWithFormat:details[USER_]]
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@",details[USER][USER_FIRST_NAME],details[USER][USER_LAST_NAME]];
+        NSLog(@"%@",self.nameLabel.text);
+        [self.imageView1 setImageWithURL:[NSURL URLWithString:details[USER][@"img"]] completed:nil];
+        self.imageView1.backgroundColor = [UIColor redColor];
     }
 }
 
+-(void)layoutSubviews{
+    self.imageView1.frame = CGRectMake(6, 13, 75, 75);
+    self.nameLabel.frame = CGRectMake(89, 20, 134, 21);
+}
 @end

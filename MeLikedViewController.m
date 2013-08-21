@@ -37,7 +37,7 @@
     [super viewWillAppear:animated];
     self.nextQuery = @"http://onsalelocal.com/osl2/ws/user/my-fav-offers?format=json";
     if(self.otherUser){
-        //self.currentQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/offers?userId=%@",self.otherUser];
+        self.nextQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/user/offers?format=json&userId=%@",self.otherUser];
     }
     [self refresh:self];
 }

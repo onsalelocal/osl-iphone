@@ -55,7 +55,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    //return 1;
     return self.resultsArrayOfDictionaries.count;
 }
 
@@ -68,13 +68,13 @@
     //    cell.details = [NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:urlString ]];
     //    NSLog(@"%@",cell.details);
     //});
-    
+    cell.details = self.resultsArrayOfDictionaries[indexPath.row];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString* uid = nil;//self.resultsArrayOfDictionaries[indexPath.row][USER_ID];
-    uid = @"26deae9d-3f83-4acb-ae99-5a09b3a4dc7e";
+    NSString* uid = self.resultsArrayOfDictionaries[indexPath.row][USER][USER_ID];
+    //uid = @"26deae9d-3f83-4acb-ae99-5a09b3a4dc7e";
     if(uid.length){
         RootViewController* rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"me"];
         rvc.info = uid;
