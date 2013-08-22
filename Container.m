@@ -55,6 +55,7 @@ static CLGeocoder* _geocoder = nil;
 - (id) initWithLocation:(CLLocation*) location andPlacemark:(CLPlacemark*)placemark{
     self = [self init];
     if(self){
+        NSLog(@"%@",location);
         self.location = location;
         self.cityString = placemark.locality;
         self.stateString = placemark.administrativeArea;

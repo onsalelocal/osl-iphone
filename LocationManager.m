@@ -17,6 +17,7 @@ static LocationManager* _instance = nil;
     if(!_instance){
         _instance = [[LocationManager alloc] init];
         _instance.manager = [[CLLocationManager alloc]init];
+        _instance.manager.delegate = _instance;
         [_instance startUpdating];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUpdating) name:UIApplicationWillEnterForegroundNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopUpdating) name:UIApplicationDidEnterBackgroundNotification object:nil];
@@ -54,6 +55,7 @@ static LocationManager* _instance = nil;
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
     self.location = [locations lastObject];
+    NSLog(@"%@",self.location);
     //CLLocation* loc = [[CLLocation alloc] initWithLatitude:37.3703 longitude:-121.924];
     [Container startUpdatingWithLocation:self.location];
 }

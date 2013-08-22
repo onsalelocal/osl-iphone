@@ -23,4 +23,6 @@
 
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+- (IBAction)followingPressed:(id)sender;
+- (IBAction)trendPressed:(id)sender;
 @end

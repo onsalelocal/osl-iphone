@@ -640,7 +640,11 @@
                             </searchBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56m-U8-JMF">
                                 <items>
-                                    <barButtonItem title="Item" id="Odp-d3-eYb"/>
+                                    <barButtonItem title="Item" id="Odp-d3-eYb">
+                                        <connections>
+                                            <action selector="changeLocation:" destination="Ddy-l6-hd9" id="1CY-uM-J0n"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -2231,25 +2235,47 @@
                                     <outlet property="delegate" destination="3aL-98-znZ" id="xaD-9n-597"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPb-6z-SMd">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Following" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eV-yN-caM">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAg-A3-tvt">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Gjd-Bl-bSg"/>
+                                    <constraint firstAttribute="width" constant="66" id="iEs-uJ-2XX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Trend">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="trendPressed:" destination="3aL-98-znZ" eventType="touchUpInside" id="yJ7-gK-F16"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8V-7M-wb6">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="fz4-ea-CL0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Following">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6eV-yN-caM" firstAttribute="baseline" secondItem="KPb-6z-SMd" secondAttribute="baseline" type="default" id="9qS-7i-dNJ"/>
-                            <constraint firstItem="KPb-6z-SMd" firstAttribute="top" secondItem="Dqf-XK-ebZ" secondAttribute="top" constant="4" id="Jo6-mj-TAl"/>
+                            <constraint firstItem="f8V-7M-wb6" firstAttribute="centerX" secondItem="9gn-3t-oYp" secondAttribute="centerX" type="default" id="2Yo-fR-xlD"/>
+                            <constraint firstItem="lAg-A3-tvt" firstAttribute="leading" secondItem="Dqf-XK-ebZ" secondAttribute="leading" type="default" id="L16-q7-EWN"/>
                             <constraint firstItem="9gn-3t-oYp" firstAttribute="top" secondItem="Dqf-XK-ebZ" secondAttribute="top" constant="29" type="user" id="Mf4-fL-4pf"/>
-                            <constraint firstItem="6eV-yN-caM" firstAttribute="centerX" secondItem="9gn-3t-oYp" secondAttribute="centerX" type="default" id="OIn-8p-8mN"/>
+                            <constraint firstItem="f8V-7M-wb6" firstAttribute="top" secondItem="Dqf-XK-ebZ" secondAttribute="top" type="default" id="Rn0-hq-qoo"/>
                             <constraint firstItem="9gn-3t-oYp" firstAttribute="trailing" secondItem="Dqf-XK-ebZ" secondAttribute="trailing" type="default" id="cP2-aO-3oK"/>
-                            <constraint firstItem="KPb-6z-SMd" firstAttribute="leading" secondItem="Dqf-XK-ebZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="nuc-nr-Jfw"/>
+                            <constraint firstItem="lAg-A3-tvt" firstAttribute="top" secondItem="Dqf-XK-ebZ" secondAttribute="top" type="default" id="czw-Ib-hhc"/>
+                            <constraint firstItem="lAg-A3-tvt" firstAttribute="bottom" secondItem="f8V-7M-wb6" secondAttribute="bottom" type="default" id="hp6-fC-sx0"/>
+                            <constraint firstItem="f8V-7M-wb6" firstAttribute="baseline" secondItem="lAg-A3-tvt" secondAttribute="baseline" type="default" id="p30-QU-Fst"/>
                             <constraint firstItem="9gn-3t-oYp" firstAttribute="leading" secondItem="Dqf-XK-ebZ" secondAttribute="leading" type="default" id="qW1-lM-Lq3"/>
                             <constraint firstItem="9gn-3t-oYp" firstAttribute="bottom" secondItem="Dqf-XK-ebZ" secondAttribute="bottom" type="user" id="yc7-4U-m9X"/>
                         </constraints>
@@ -2281,11 +2307,46 @@
                         <segue destination="qmo-Ml-cu1" kind="relationship" relationship="viewControllers" id="Xfc-Fc-Wyg"/>
                         <segue destination="uin-V5-1s0" kind="relationship" relationship="viewControllers" id="9aN-FJ-f4l"/>
                         <segue destination="SlZ-DX-RRm" kind="relationship" relationship="viewControllers" id="2cO-bV-T3I"/>
+                        <segue destination="Std-xg-FvG" kind="relationship" relationship="viewControllers" id="t6R-eT-yVs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kf-IW-8Mr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="68" y="-1708"/>
+        </scene>
+        <!--Log Out View Controller - Log Out-->
+        <scene sceneID="MW0-gS-DXg">
+            <objects>
+                <viewController id="Std-xg-FvG" customClass="LogOutViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WBh-GX-FVx">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80t-r2-2m9">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOutPressed:" destination="Std-xg-FvG" eventType="touchUpInside" id="gFa-Zy-gCb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="80t-r2-2m9" firstAttribute="centerX" secondItem="WBh-GX-FVx" secondAttribute="centerX" type="default" id="QKZ-25-0UO"/>
+                            <constraint firstItem="80t-r2-2m9" firstAttribute="centerY" secondItem="WBh-GX-FVx" secondAttribute="centerY" type="default" id="dRE-lG-hIR"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Log Out" id="17T-Hf-AX6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nbm-SQ-63N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-183" y="-1028"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="ndt-eI-EUB">
@@ -2359,27 +2420,48 @@
                                     <outlet property="delegate" destination="O81-sG-puq" id="Xpg-Pq-Ozs"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2Q-Lx-5Hh">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Following" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCQ-aN-U82">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLB-fH-OGv">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="2Uj-Qs-Xkw"/>
+                                    <constraint firstAttribute="height" constant="30" id="arr-WU-fcG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Trend">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SA0-qA-WuE">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="rCk-Wm-px5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Following">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="followingPressed:" destination="O81-sG-puq" eventType="touchUpInside" id="aNe-9k-bHV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="s2Q-Lx-5Hh" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" constant="4" id="2n3-r1-FE8"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="leading" secondItem="oXW-YO-keN" secondAttribute="leading" type="default" id="Fdo-s9-tNg"/>
-                            <constraint firstItem="s2Q-Lx-5Hh" firstAttribute="centerX" secondItem="DW9-38-qwi" secondAttribute="centerX" type="default" id="ZRg-jQ-Mdk"/>
+                            <constraint firstItem="nLB-fH-OGv" firstAttribute="centerX" secondItem="DW9-38-qwi" secondAttribute="centerX" type="default" id="GCD-gE-3Qh"/>
+                            <constraint firstItem="nLB-fH-OGv" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" type="default" id="ZgB-Eo-nQF"/>
+                            <constraint firstItem="SA0-qA-WuE" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" type="default" id="ahF-37-MeJ"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="bottom" secondItem="oXW-YO-keN" secondAttribute="bottom" type="user" id="eQo-7z-tjh"/>
+                            <constraint firstItem="SA0-qA-WuE" firstAttribute="bottom" secondItem="nLB-fH-OGv" secondAttribute="bottom" type="default" id="fwr-nz-2Rp"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" constant="29" type="user" id="gjU-qU-7j4"/>
-                            <constraint firstItem="MCQ-aN-U82" firstAttribute="baseline" secondItem="s2Q-Lx-5Hh" secondAttribute="baseline" type="default" id="hco-wK-PdU"/>
-                            <constraint firstAttribute="trailing" secondItem="MCQ-aN-U82" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="rA1-Q1-Lca"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="trailing" secondItem="oXW-YO-keN" secondAttribute="trailing" type="default" id="rTd-6h-zOO"/>
+                            <constraint firstItem="SA0-qA-WuE" firstAttribute="trailing" secondItem="oXW-YO-keN" secondAttribute="trailing" type="default" id="xwP-V3-vLx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Explore-trend" id="nha-ht-8dI"/>
@@ -3243,6 +3325,7 @@
         <class className="ChangeLocationViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ChangeLocationViewController.h"/>
             <relationships>
+                <relationship kind="action" name="changeLocation:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="coordinateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
@@ -3277,6 +3360,8 @@
         <class className="DataViewController" superclassName="ResultsTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DataViewController.h"/>
             <relationships>
+                <relationship kind="action" name="followingPressed:"/>
+                <relationship kind="action" name="trendPressed:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
             </relationships>
         </class>
@@ -3324,6 +3409,12 @@
         </class>
         <class className="InviteFriendsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InviteFriendsViewController.h"/>
+        </class>
+        <class className="LogOutViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogOutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="logOutPressed:"/>
+            </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
@@ -3559,6 +3650,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="WebViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>

@@ -283,6 +283,7 @@
 		FC4CDE751767DCA2007BC360 /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4CDE741767DCA2007BC360 /* CustomTabBarController.m */; };
 		FC763BCC178DD8EC00281EF7 /* StoreLookupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC763BCB178DD8EC00281EF7 /* StoreLookupViewController.m */; };
 		FC763BEB17972FC800281EF7 /* DownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FC763BEA17972FC800281EF7 /* DownloadObject.m */; };
+		FC8B54F517C68577006AD736 /* LogOutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B54F417C68577006AD736 /* LogOutViewController.m */; };
 		FC8B5ACD176A504B004F210D /* DetailViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B5ACC176A504B004F210D /* DetailViewAnnotation.m */; };
 		FC8B5AEB176A9787004F210D /* NewSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B5AEA176A9787004F210D /* NewSearchViewController.m */; };
 		FC8B5AEE176AA56D004F210D /* NewSearchTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8B5AED176AA56D004F210D /* NewSearchTagsCell.m */; };
@@ -712,6 +713,8 @@
 		FC763BCD178DF0BF00281EF7 /* PassBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassBack.h; sourceTree = "<group>"; };
 		FC763BE917972FC800281EF7 /* DownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadObject.h; sourceTree = "<group>"; };
 		FC763BEA17972FC800281EF7 /* DownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadObject.m; sourceTree = "<group>"; };
+		FC8B54F317C68577006AD736 /* LogOutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogOutViewController.h; sourceTree = "<group>"; };
+		FC8B54F417C68577006AD736 /* LogOutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogOutViewController.m; sourceTree = "<group>"; };
 		FC8B5ACB176A504B004F210D /* DetailViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewAnnotation.h; sourceTree = "<group>"; };
 		FC8B5ACC176A504B004F210D /* DetailViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewAnnotation.m; sourceTree = "<group>"; };
 		FC8B5AE9176A9787004F210D /* NewSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSearchViewController.h; sourceTree = "<group>"; };
@@ -1371,6 +1374,8 @@
 				FCD7CB51175E474F000D506B /* unused VC */,
 				FC173F54176FDEBD00DBAE3E /* CreateDealViewController.h */,
 				FC173F55176FDEBD00DBAE3E /* CreateDealViewController.m */,
+				FC8B54F317C68577006AD736 /* LogOutViewController.h */,
+				FC8B54F417C68577006AD736 /* LogOutViewController.m */,
 				FCD7CB71175FCF1D000D506B /* StoreNearByViewController.h */,
 				FCD7CB72175FCF1D000D506B /* StoreNearByViewController.m */,
 				FCD7CB74175FDE35000D506B /* StoreFollowingViewController.h */,
@@ -1995,6 +2000,7 @@
 				FCD328AA17A1DA0D006CE685 /* StoreCommentViewController.m in Sources */,
 				FCD328BE17A9B25C006CE685 /* StorePointAnnotation.m in Sources */,
 				FCD0E40717C3E7030019D0AA /* DealCommentViewController.m in Sources */,
+				FC8B54F517C68577006AD736 /* LogOutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2093,6 +2099,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Cheng (A9V2PTTDC3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Cheng (A9V2PTTDC3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../Documents/FacebookSDK\"",
@@ -2105,6 +2113,8 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "85D7698B-E3CC-48DB-B016-D3C1F59475C9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "85D7698B-E3CC-48DB-B016-D3C1F59475C9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

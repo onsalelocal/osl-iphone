@@ -19,6 +19,8 @@
 #import <ImageIO/ImageIO.h>
 #import "SizeObject.h"
 #import "NSString+MD5.h"
+#import "RootViewController.h"
+#import "ModelController.h"
 
 #define CELL_TITLE_LABEL_FONT [UIFont fontWithName:@"Helvetica-Bold" size:14]
 #define CELL_DESCRIPTION_LABEL_FONT [UIFont fontWithName:@"Helvetica" size:12]
@@ -108,10 +110,11 @@
             
             count++;
         }
-        [self.collectionView reloadData];
+        
         [self.refreshControl endRefreshing];
         [self.refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"Pull To Update"]];
     }
+    [self.collectionView reloadData];
 }
 
 
@@ -547,4 +550,17 @@
 
 
 
+- (IBAction)followingPressed:(id)sender {
+    RootViewController* root = (RootViewController*)self.parentViewController.parentViewController;
+    UIViewController* vc = [root.modelController viewControllerAtIndex:1 storyboard:self.storyboard];
+    NSArray* arr = @[vc];
+    [root.pageViewController setViewControllers:arr direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+}
+
+- (IBAction)trendPressed:(id)sender {
+    RootViewController* root = (RootViewController*)self.parentViewController.parentViewController;
+    UIViewController* vc = [root.modelController viewControllerAtIndex:0 storyboard:self.storyboard];
+    NSArray* arr = @[vc];
+    [root.pageViewController setViewControllers:arr direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+}
 @end

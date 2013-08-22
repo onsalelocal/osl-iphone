@@ -269,13 +269,13 @@
 }
 
 - (IBAction)changeLocation:(UIBarButtonItem*)sender {
-    InitialSlidingViewController* isvc = (InitialSlidingViewController*)self.slidingViewController;
+    //InitialSlidingViewController* isvc = (InitialSlidingViewController*)self.slidingViewController;
     //NSLog(@"%@", isvc.location);
-    isvc.location = isvc.deviceLocation;
+    //isvc.location = isvc.deviceLocation;
     //NSLog(@"%@", isvc.location);
-    self.location = isvc.deviceLocation;
+    self.location = [Container theContainer].location;
     self.coordinateLabel.text = [NSString stringWithFormat:@"Lat: %f, Long: %f",self.location.coordinate.latitude,self.location.coordinate.longitude];
-    [isvc.locationManager startMonitoringSignificantLocationChanges];
+    //[isvc.locationManager startMonitoringSignificantLocationChanges];
     CLGeocoder *coder = [[CLGeocoder alloc]init];
     [coder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError* error){
         if (error) {

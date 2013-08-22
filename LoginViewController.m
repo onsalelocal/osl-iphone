@@ -73,6 +73,10 @@
 }
 
 - (IBAction)loginPressed:(id)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:self.emailTextField.text forKey:USER_EMAIL];
+#warning encrypt email password
+    [[NSUserDefaults standardUserDefaults] setValue:self.passwordTextField.text forKey:USER_PASSWORD];
+
     [self login];
 }
 
@@ -98,8 +102,13 @@
     NSString *login = self.emailTextField.text;
 #warning encrypt password
     NSString* password = self.passwordTextField.text;
-    NSString* s = [NSString stringWithFormat: @"password=password&login=email@email.com" ];//],login,password];
-
+    //
+    if([[NSUserDefaults standardUserDefaults] boolForKey:USER_LOGGED_IN ]){
+        login = [[NSUserDefaults standardUserDefaults] valueForKey:USER_EMAIL];
+        password = [[NSUserDefaults standardUserDefaults]valueForKey:USER_PASSWORD];
+    }
+    NSString* s = [NSString stringWithFormat: @"password=%@&login=%@",password, login];
+    
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody: [s dataUsingEncoding:NSUTF8StringEncoding]];
     [request setValue:header forHTTPHeaderField:@"Reqid"];
@@ -181,9 +190,6 @@
             [alert show];
         }else{
             [[NSUserDefaults standardUserDefaults]setBool:YES forKey:USER_LOGGED_IN];
-            [[NSUserDefaults standardUserDefaults] setValue:self.emailTextField.text forKey:USER_EMAIL];
-#warning encrypt email password
-            [[NSUserDefaults standardUserDefaults] setValue:self.passwordTextField.text forKey:USER_PASSWORD];
             [[NSUserDefaults standardUserDefaults] setValue:d[USER_ID] forKey:USER_ID];
             [self.loginDelegate didFinishLoggingIn:self];
             [self prepCustomTabController];
