@@ -135,6 +135,26 @@
         
         
     }*/
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor redColor]];
+    //[[UITabBar appearance] setTintColor:[UIColor clearColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont fontWithName:@"AmericanTypewriter" size:20.0f], UITextAttributeFont,
+                                                       [UIColor yellowColor], UITextAttributeTextColor,
+                                                       /*[UIColor grayColor], UITextAttributeTextShadowColor,*/
+                                                       [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
+                                                       nil] forState:UIControlStateSelected];
+    //[[UITabBar appearance] setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+    //[[UITabBar appearance] setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    /*
+    [[UITabBar appearance] setSelectedButtonImages:@[[UIImage imageNamed:@"home_selected.png"],
+                                                    [UIImage imageNamed:@"home_selected.png"],
+                                                    [UIImage imageNamed:@"magnifier_selected.png"],
+                                                    [UIImage imageNamed:@"camera_selected.png"],
+                                                    [UIImage imageNamed:@"user_selected.png"],
+                                                    [UIImage imageNamed:@"home_selected.png"]]];
+    [[UITabBar appearance] set]
+     */
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor redColor]];
 }
 
 

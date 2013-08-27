@@ -2372,7 +2372,7 @@
         <scene sceneID="0Ig-an-XMp">
             <objects>
                 <navigationController id="qmo-Ml-cu1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Post" id="8cU-hp-gPg"/>
+                    <tabBarItem key="tabBarItem" title="Post" image="camera.png" id="8cU-hp-gPg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="krA-cj-mWh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2397,6 +2397,9 @@
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DW9-38-qwi">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="476" id="lwL-rl-Mb2"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a59-Qf-foX">
                                     <size key="itemSize" width="140" height="233"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2457,7 +2460,7 @@
                             <constraint firstItem="nLB-fH-OGv" firstAttribute="centerX" secondItem="DW9-38-qwi" secondAttribute="centerX" type="default" id="GCD-gE-3Qh"/>
                             <constraint firstItem="nLB-fH-OGv" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" type="default" id="ZgB-Eo-nQF"/>
                             <constraint firstItem="SA0-qA-WuE" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" type="default" id="ahF-37-MeJ"/>
-                            <constraint firstItem="DW9-38-qwi" firstAttribute="bottom" secondItem="oXW-YO-keN" secondAttribute="bottom" type="user" id="eQo-7z-tjh"/>
+                            <constraint firstItem="nLB-fH-OGv" firstAttribute="baseline" secondItem="SA0-qA-WuE" secondAttribute="baseline" type="default" id="ee8-zr-c6k"/>
                             <constraint firstItem="SA0-qA-WuE" firstAttribute="bottom" secondItem="nLB-fH-OGv" secondAttribute="bottom" type="default" id="fwr-nz-2Rp"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" constant="29" type="user" id="gjU-qU-7j4"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="trailing" secondItem="oXW-YO-keN" secondAttribute="trailing" type="default" id="rTd-6h-zOO"/>
@@ -3117,11 +3120,11 @@
             </objects>
             <point key="canvasLocation" x="4242" y="-2905"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Search-->
         <scene sceneID="Oz1-ak-IkJ">
             <objects>
                 <navigationController id="QU8-iq-DXW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="b18-01-LWK"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifier_unselected.png" id="b18-01-LWK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3QQ-Ve-bet">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3140,7 +3143,7 @@
         <scene sceneID="c61-CC-rMM">
             <objects>
                 <navigationController id="a2i-Fd-TRc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Explore" id="PJD-NM-LcE"/>
+                    <tabBarItem key="tabBarItem" title="Explore" image="home_unselected.png" id="PJD-NM-LcE"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sDk-CT-J9L">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3178,7 +3181,7 @@
         <scene sceneID="zgo-ep-DkF">
             <objects>
                 <navigationController storyboardIdentifier="" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uin-V5-1s0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" id="Yhh-p7-gfV"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="user_unselected.png" id="Yhh-p7-gfV"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A1C-lE-AkD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3313,13 +3316,17 @@
         <image name="btn_fb_550x84.png" width="550" height="84"/>
         <image name="btn_img_following2_142x62.png" width="142" height="62"/>
         <image name="btn_login_550x84.png" width="550" height="84"/>
+        <image name="camera.png" width="30" height="30"/>
         <image name="direction_left_31.png" width="31" height="31"/>
         <image name="direction_right_31.png" width="31" height="31"/>
         <image name="fb_icon.jpeg" width="225" height="225"/>
+        <image name="home_unselected.png" width="16" height="16"/>
         <image name="imessage_icon.jpeg" width="144" height="144"/>
         <image name="img_logo.png" width="480" height="122"/>
+        <image name="magnifier_unselected.png" width="16" height="16"/>
         <image name="mail_icon.jpeg" width="192" height="192"/>
         <image name="twitter_icon.jpeg" width="225" height="225"/>
+        <image name="user_unselected.png" width="16" height="16"/>
     </resources>
     <classes>
         <class className="ChangeLocationViewController" superclassName="UIViewController">
@@ -3360,6 +3367,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DataViewController.h"/>
             <relationships>
                 <relationship kind="action" name="followingPressed:"/>
+                <relationship kind="action" name="refresh:"/>
                 <relationship kind="action" name="trendPressed:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
             </relationships>
