@@ -296,7 +296,7 @@
         NSString *txt = [[NSString alloc] initWithData:self.responseData encoding: NSASCIIStringEncoding];
         NSLog(@"%@",txt);
         
-        //NSLog(@"%@", txt);
+        NSLog(@"%@", self.currentQuery);
         self.jsonDataFromQuery = [txt dataUsingEncoding:NSUTF8StringEncoding];
     }
     

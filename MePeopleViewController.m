@@ -78,6 +78,7 @@
     if(uid.length){
         RootViewController* rvc = [self.storyboard instantiateViewControllerWithIdentifier:@"me"];
         rvc.info = uid;
+        [rvc.navigationItem setHidesBackButton:NO];
         [self.navigationController pushViewController:rvc animated:YES];
         NSLog(@"Pushed OtherUserVC");
     }

@@ -265,6 +265,7 @@
     self.useDeviceLocationButton = [[UIBarButtonItem alloc]initWithTitle:@"Use Device Location" style:UIBarButtonItemStyleBordered target:self action:@selector(changeLocation:)];
     [self.toolBar setBackgroundImage:[UIImage imageNamed:@"navBarBackground.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     [self.searchBar setBackgroundImage:[UIImage imageNamed:@"navBarBackground.png"]];
+    [self.navigationItem setHidesBackButton:YES];
     
 }
 

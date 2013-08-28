@@ -21,6 +21,8 @@
 #import "NSString+MD5.h"
 #import "RootViewController.h"
 #import "ModelController.h"
+#import "InfiniTabBar.h"
+#import "CustomTabBarController.h"
 
 #define CELL_TITLE_LABEL_FONT [UIFont fontWithName:@"Helvetica-Bold" size:14]
 #define CELL_DESCRIPTION_LABEL_FONT [UIFont fontWithName:@"Helvetica" size:12]
@@ -204,6 +206,7 @@ typedef enum ScrollDirection {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.bottonBarVisible = YES;
 	// Do any additional setup after loading the view, typically from a nib.
     [[EGOCache globalCache]clearCache];
@@ -281,6 +284,25 @@ typedef enum ScrollDirection {
     [super viewWillDisappear:animated];
     [Container theContainer].searchObject = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self.collectionView];
+    if(!self.bottonBarVisible){
+        /*
+        [UIView animateWithDuration:.4 animations:^{
+            CustomTabBarController* ctbc = (CustomTabBarController*)self.tabBarController;;
+            UIView* bottonBar = ctbc.infinityTabBar;
+            CGRect frame = bottonBar.frame;
+            NSLog(@"%f",self.view.frame.size.height);
+            frame.origin.y = frame.origin.y - frame.size.height;
+            bottonBar.frame = frame;
+            
+            CGRect frame2 = ctbc.view.frame;
+            frame2.size.height -= frame.size.height;
+            ctbc.view.frame = frame2;
+            
+        }];
+         */
+        [self showTabBar:(CustomTabBarController*)self.tabBarController];
+        self.bottonBarVisible = YES;
+    }
 }
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     NSLog(@"%d",self.resultsArrayOfDictionaries.count);
@@ -308,37 +330,67 @@ typedef enum ScrollDirection {
     self.lastContentOffset = scrollView.contentOffset.y;
     
     // do whatever you need to with scrollDirection here.
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    //if (bottomEdge >= scrollView.contentSize.height
     if(scrollDirection == ScrollDirectionDown && self.bottonBarVisible && scrollView.contentOffset.y>0){
         self.tabBarController.view.backgroundColor = [UIColor clearColor];
-        [UIView animateWithDuration:.4 animations:^{
-            UIView* bottonBar = self.tabBarController.tabBar;
-            CGRect frame = bottonBar.frame;
-            NSLog(@"%f",self.view.frame.size.height);
-            frame.origin.y = frame.origin.y + frame.size.height;
-            bottonBar.frame = frame;
-            
-            CGRect frame2 = scrollView.frame;
-            frame2.size.height += frame.size.height;
-            scrollView.frame = frame2;
-            
-        }];
+        [self hideTabBar:(CustomTabBarController *)self.tabBarController];
         self.bottonBarVisible = NO;
     }
-    else if (scrollDirection == ScrollDirectionUp && !self.bottonBarVisible && scrollView.contentOffset.y>0){
-        [UIView animateWithDuration:.4 animations:^{
-            UIView* bottonBar = self.tabBarController.tabBar;
-            CGRect frame = bottonBar.frame;
-            NSLog(@"%f",self.view.frame.size.height);
-            frame.origin.y = frame.origin.y - frame.size.height;
-            bottonBar.frame = frame;
-            
-            CGRect frame2 = scrollView.frame;
-            frame2.size.height -= frame.size.height;
-            scrollView.frame = frame2;
-            
-        }];
+    else if (scrollDirection == ScrollDirectionUp && !self.bottonBarVisible && scrollView.contentOffset.y>0 && bottomEdge < scrollView.contentSize.height){
+        [self showTabBar:(CustomTabBarController*)self.tabBarController];
         self.bottonBarVisible = YES;
     }
+}
+
+- (void)showTabBar:(CustomTabBarController *)tabbarcontroller
+{
+    tabbarcontroller.tabBar.hidden = NO;
+    [UIView animateWithDuration:.4 animations:^{
+        for (UIView *view in tabbarcontroller.view.subviews) {
+            if ([view isKindOfClass:[UITabBar class]] || [view isKindOfClass:[InfiniTabBar class]]) {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y-49.f, view.frame.size.width, view.frame.size.height)];
+            }
+            /*
+            else {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height-49.f)];
+            }
+             */
+        }
+    } completion:^(BOOL finished) {
+        //do smth after animation finishes
+        for (UIView *view in tabbarcontroller.view.subviews) {
+            if (!([view isKindOfClass:[UITabBar class]] || [view isKindOfClass:[InfiniTabBar class]])) {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height-49.f)];
+            }
+        }
+        
+    }];
+}
+
+- (void)hideTabBar:(CustomTabBarController *)tabbarcontroller
+{
+    [UIView animateWithDuration:.4 animations:^{
+        for (UIView *view in tabbarcontroller.view.subviews) {
+            if ([view isKindOfClass:[UITabBar class]] || [view isKindOfClass:[InfiniTabBar class]]) {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y+49.f, view.frame.size.width, view.frame.size.height)];
+            }
+            else {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height+49.f)];
+            }
+              
+        }
+    } completion:^(BOOL finished) {
+        //do smth after animation finishes
+        //tabbarcontroller.tabBar.hidden = YES;
+        /*
+        for (UIView *view in tabbarcontroller.view.subviews) {
+            if (!([view isKindOfClass:[UITabBar class]] || [view isKindOfClass:[InfiniTabBar class]])) {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, view.frame.size.height+49.f)];
+            }
+        }
+         */
+    }];
 }
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

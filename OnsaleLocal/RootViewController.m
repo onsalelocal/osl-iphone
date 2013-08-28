@@ -29,9 +29,16 @@
     }
 }
 
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    [self.navigationItem setHidesBackButton:YES];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     // Configure the page view controller and add it as a child view controller.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(meUpdated:) name:DATA_OBJECT_ONE_DONE object:nil];

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "InfiniTabBar.h"
 
 
 @interface CustomTabBarController : UITabBarController
 
+@property(strong,nonatomic)InfiniTabBar* infinityTabBar;
 
 @end

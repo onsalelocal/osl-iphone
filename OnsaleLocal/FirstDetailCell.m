@@ -134,31 +134,12 @@
 }
 
 -(void)commentButtonPressed{
-    /*
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"Not Implemeted Yet"
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-    [alertView show];
-     */
     
     [self.cellMethodsDelegate commentPressed];
 }
 
 -(void)shareButtonPressed{
     [self.cellMethodsDelegate sharePressed];
-    /*
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"Not Implemeted Yet"
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-    [alertView show];
-     */
-
 }
 
 -(void)phoneButtonPressed{
