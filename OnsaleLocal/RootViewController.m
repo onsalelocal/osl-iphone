@@ -25,7 +25,7 @@
 - (void)setInfo:(id)info{
     if (info != _info) {
         _info = info;
-        self.modelController.info = self.info;
+        self.modelController.info = _info;
     }
 }
 

@@ -31,6 +31,15 @@
 
 @interface DataViewController ()<UICollectionViewDelegateWaterfallLayout, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
+typedef enum ScrollDirection {
+    ScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
+
 @property (strong, nonatomic) NSString* locationString;
 @property (strong, nonatomic) NSArray* deals;
 @property (strong, nonatomic) NSString* append;
@@ -38,6 +47,8 @@
 @property (assign, nonatomic) CGFloat cellWidth;
 @property (strong, nonatomic) NSArray* cellHeights;
 @property (strong, nonatomic) UIRefreshControl* refreshControl;
+@property (nonatomic, assign) NSInteger lastContentOffset;
+@property (nonatomic, assign) BOOL bottonBarVisible;
 
 @end
 
@@ -193,6 +204,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.bottonBarVisible = YES;
 	// Do any additional setup after loading the view, typically from a nib.
     [[EGOCache globalCache]clearCache];
     self.cellWidth = 155;
@@ -262,6 +274,7 @@
     //self.dataLabel.text = [self.dataObject description];
     //[self.collectionView reloadData];
     [[NSNotificationCenter defaultCenter] addObserver:self.collectionView selector:@selector(reloadData) name:REFRESH_COLLECTION_VIEW object:nil];
+    //[self.view insertSubview:self.collectionView aboveSubview:self.tabBarController.tabBar];
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
@@ -282,7 +295,51 @@
     layout.itemWidth = self.cellWidth;
 }
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    ScrollDirection scrollDirection;
+    if (self.lastContentOffset > scrollView.contentOffset.y)
+        scrollDirection = ScrollDirectionUp;
+    else if (self.lastContentOffset < scrollView.contentOffset.y)
+        scrollDirection = ScrollDirectionDown;
+    else
+        scrollDirection = ScrollDirectionNone;
+    
+    self.lastContentOffset = scrollView.contentOffset.y;
+    
+    // do whatever you need to with scrollDirection here.
+    if(scrollDirection == ScrollDirectionDown && self.bottonBarVisible && scrollView.contentOffset.y>0){
+        self.tabBarController.view.backgroundColor = [UIColor clearColor];
+        [UIView animateWithDuration:.4 animations:^{
+            UIView* bottonBar = self.tabBarController.tabBar;
+            CGRect frame = bottonBar.frame;
+            NSLog(@"%f",self.view.frame.size.height);
+            frame.origin.y = frame.origin.y + frame.size.height;
+            bottonBar.frame = frame;
+            
+            CGRect frame2 = scrollView.frame;
+            frame2.size.height += frame.size.height;
+            scrollView.frame = frame2;
+            
+        }];
+        self.bottonBarVisible = NO;
+    }
+    else if (scrollDirection == ScrollDirectionUp && !self.bottonBarVisible && scrollView.contentOffset.y>0){
+        [UIView animateWithDuration:.4 animations:^{
+            UIView* bottonBar = self.tabBarController.tabBar;
+            CGRect frame = bottonBar.frame;
+            NSLog(@"%f",self.view.frame.size.height);
+            frame.origin.y = frame.origin.y - frame.size.height;
+            bottonBar.frame = frame;
+            
+            CGRect frame2 = scrollView.frame;
+            frame2.size.height -= frame.size.height;
+            scrollView.frame = frame2;
+            
+        }];
+        self.bottonBarVisible = YES;
+    }
+}
 
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     DealCollectionViewCell* cell = nil;

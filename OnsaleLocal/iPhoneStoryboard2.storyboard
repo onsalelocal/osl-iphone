@@ -1163,7 +1163,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StoreCommentsCell" rowHeight="66" id="grz-ak-mRh" customClass="StoreCommentCell">
-                                        <rect key="frame" x="0.0" y="46" width="320" height="68"/>
+                                        <rect key="frame" x="0.0" y="46" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="280" height="65"/>
@@ -2397,9 +2397,6 @@
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DW9-38-qwi">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="476" id="lwL-rl-Mb2"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a59-Qf-foX">
                                     <size key="itemSize" width="140" height="233"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -2460,7 +2457,7 @@
                             <constraint firstItem="nLB-fH-OGv" firstAttribute="centerX" secondItem="DW9-38-qwi" secondAttribute="centerX" type="default" id="GCD-gE-3Qh"/>
                             <constraint firstItem="nLB-fH-OGv" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" type="default" id="ZgB-Eo-nQF"/>
                             <constraint firstItem="SA0-qA-WuE" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" type="default" id="ahF-37-MeJ"/>
-                            <constraint firstItem="nLB-fH-OGv" firstAttribute="baseline" secondItem="SA0-qA-WuE" secondAttribute="baseline" type="default" id="ee8-zr-c6k"/>
+                            <constraint firstItem="DW9-38-qwi" firstAttribute="bottom" secondItem="oXW-YO-keN" secondAttribute="bottom" type="user" id="eQo-7z-tjh"/>
                             <constraint firstItem="SA0-qA-WuE" firstAttribute="bottom" secondItem="nLB-fH-OGv" secondAttribute="bottom" type="default" id="fwr-nz-2Rp"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="top" secondItem="oXW-YO-keN" secondAttribute="top" constant="29" type="user" id="gjU-qU-7j4"/>
                             <constraint firstItem="DW9-38-qwi" firstAttribute="trailing" secondItem="oXW-YO-keN" secondAttribute="trailing" type="default" id="rTd-6h-zOO"/>
@@ -3367,7 +3364,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DataViewController.h"/>
             <relationships>
                 <relationship kind="action" name="followingPressed:"/>
-                <relationship kind="action" name="refresh:"/>
                 <relationship kind="action" name="trendPressed:"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
             </relationships>
@@ -3395,6 +3391,7 @@
             <relationships>
                 <relationship kind="action" name="bookMarkPressed:"/>
                 <relationship kind="action" name="callPhone:"/>
+                <relationship kind="action" name="followButtonPressed:"/>
                 <relationship kind="outlet" name="bottomBar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>

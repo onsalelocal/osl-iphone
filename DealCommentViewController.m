@@ -131,8 +131,17 @@
 
 }
 
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    self.textView.text = @"";
+    return YES;
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
        return YES;
+}
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView{
+    return YES;
 }
 
 @end

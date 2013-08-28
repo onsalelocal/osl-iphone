@@ -43,6 +43,8 @@
 
 @interface DetailViewController ()<MapViewControllerDelegate,TTTAttributedLabelDelegate, MapPressed, UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, MKMapViewDelegate,cellMethods>
 
+
+
 @property (weak, nonatomic) IBOutlet UIToolbar *bottomBar;
 @property (strong, nonatomic) NSArray* subCategories;
 @property (strong, nonatomic) NSArray* bookmarkArray;
@@ -63,6 +65,8 @@
 @property (strong, nonatomic) UITapGestureRecognizer *tap;
 @property (strong, nonatomic) NSMutableArray* listOfReviewViews;
 @property (strong, nonatomic) NSArray* fakeReviews;
+
+//
 //@property (strong, nonatomic) id<cellMethods> cellMethodsDelegate;
 
 
@@ -96,6 +100,7 @@
 - (void)setCommentsDealDict:(NSDictionary *)commentsDealDict{
     //if(commentsDealDict != _commentsDealDict){
         _commentsDealDict = commentsDealDict;
+    [self.listOfReviewViews removeAllObjects];
     for(NSDictionary* d in self.commentsDealDict[@"items"]){//commentsDealDict[@"items"]){
             ReviewView* rv = [[ReviewView alloc]initWithInfoDict:d];
             [self.listOfReviewViews addObject:rv];
@@ -202,12 +207,13 @@
         url = [NSURL URLWithString:self.query];
         [request setURL:url];
         self.userLikeConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-        
+        /*
         self.query = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/comments?format=json&offerId=%@", self.offerID];
         NSLog(@"%@", self.query);
         url = [NSURL URLWithString:self.query];
         [request setURL:url];
         self.commentsConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+         */
     }
 }
 
@@ -223,7 +229,28 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    NSURL* url = [NSURL URLWithString:self.query];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60.0];
+    NSUUID* uuid = [[UIDevice currentDevice]identifierForVendor];
+    if(!uuid){//below ios 6.0
+        uuid = [[NSUUID alloc]initWithUUIDString:[[UIDevice currentDevice]uniqueIdentifier]];
+    }
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSString* userID = [[NSUserDefaults standardUserDefaults]objectForKey:USER_EMAIL];
+    long ms = (long)(CFAbsoluteTimeGetCurrent () * 1000);
+    NSString *header = [NSString stringWithFormat:@"ios;%@;%@;%@;%f;%f;%ld",[uuid UUIDString], version, userID,[Container theContainer].location.coordinate.latitude, [Container theContainer].location.coordinate.longitude, ms];
+    [request addValue:header forHTTPHeaderField:@"Reqid"];
+    self.query = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/comments?format=json&offerId=%@", self.offerID];
+    //[[EGOCache globalCache]removeCacheForKey:[self.query md5]];
+    NSLog(@"%@", self.query);
+    url = [NSURL URLWithString:self.query];
+    [request setURL:url];
+    self.commentsConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    
+    
     //self.spinner.frame = CGRectMake(0, self.view.frame.size.height-72, self.view.frame.size.width, 72);
+    /*
     [self.navigationItem.backBarButtonItem setTintColor:[UIColor colorWithRed:176/255.0 green:27/255.0f blue:23/255.0f alpha:1]];
     NSMutableArray* bookmarks;
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
@@ -238,6 +265,7 @@
         self.isBookmarked = [self set:set containesDictionaryWithKey:DEAL_ID thatMatchesValue:self.dealDict[DEAL_ID]];
         
     }
+     */
 /*
     Container* container = [Container theContainer];
     if(container && !container.isUpdating){
@@ -281,13 +309,17 @@
         }
         SizeObject* ob = [[SizeObject alloc]init];
         [ob setImageSize:size withMaxWidth:300];
-        return height + ob.imageSize.height + 60 +8;
+        return height + ob.imageSize.height + 60 +23;
     }
     else if(indexPath.row == 1){//shared by
         return 110;
     }
     else if(indexPath.row == 2){//tag
-        return [self heightForTags];
+        if(self.dealDict[@"tags"]){
+            NSLog(@"%f", [self heightForTags]);
+            return [self heightForTags];
+        }
+        return 100;
     }
     else if(indexPath.row == 3){//store
         if(self.dealDict[STORE_URL]){
@@ -309,12 +341,7 @@
         return offset;
 
     }
-    /*
-    else if(indexPath.row == 5){//reviews
-        return 50;
-
-    }
-     */
+    
     return 200;
 }
 
@@ -322,7 +349,7 @@
     int startX = 8;
     int startY = 29;
     
-    NSArray * tags = TAG_ARRAY;
+    NSArray * tags = [self.dealDict[@"tags"] componentsSeparatedByString:@","];
     NSMutableArray* tagLabels = [NSMutableArray arrayWithCapacity:tags.count];
     if(tags.count){
         CGSize size = [tags[0] sizeWithFont:TAG_FONT];
@@ -404,7 +431,10 @@
         if(!cell){
             cell = [[TagsTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ss];
         }
-        ((TagsTableViewCell*)cell).tags = TAG_ARRAY;
+        if(self.dealDict[@"tags"]){
+            ((TagsTableViewCell*)cell).tags = [self.dealDict[@"tags"] componentsSeparatedByString:@","];
+        }
+        //((TagsTableViewCell*)cell).tags = TAG_ARRAY;
     }
     else if (indexPath.row == 3){
         static NSString* ss = @"StoreTableViewCell";
@@ -666,4 +696,32 @@
 
 - (IBAction)followButtonPressed:(id)sender {
 }
+
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    ScrollDirection scrollDirection;
+    if (self.lastContentOffset > scrollView.contentOffset.y)
+        scrollDirection = ScrollDirectionUp;
+    else if (self.lastContentOffset < scrollView.contentOffset.y)
+        scrollDirection = ScrollDirectionDown;
+    else
+        scrollDirection = ScrollDirectionNone;
+    
+    self.lastContentOffset = scrollView.contentOffset.y;
+    
+    // do whatever you need to with scrollDirection here.
+    if(scrollDirection == ScrollDirectionDown){
+        [UIView animateWithDuration:.4 animations:^{
+            UIView* bottonBar = self.tabBarController.tabBar;
+            CGRect frame = bottonBar.frame;
+            frame.origin.y = self.view.frame.size.height;
+        
+        }];
+    }
+    else{
+        
+    }
+}
+ */
 @end

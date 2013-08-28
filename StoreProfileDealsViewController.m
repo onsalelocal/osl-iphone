@@ -35,6 +35,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    NSLog(@"%@",_info);
+    NSLog(@"%@",self.info);
     self.info = self.info;//resets labels
 #warning  need to set store-deal query
     //self.currentQuery = [NSString stringWithFormat:@""];

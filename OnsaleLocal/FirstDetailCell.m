@@ -168,7 +168,12 @@
 }
 
 -(void)favButtonPressed{
-    NSString* urlString = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/like/%@?format=json",self.dealDict[DEAL_ID]];
+    NSString* urlString;
+    if(![self.dealDict[@"liked"] boolValue])
+        urlString = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/like/%@?format=json",self.dealDict[DEAL_ID]];
+    else
+        urlString = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/offer/unlike/%@?format=json",self.dealDict[DEAL_ID]];
+
     NSURL* url = [NSURL URLWithString:urlString];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];

@@ -178,6 +178,8 @@
 /////////Need to finish
 - (IBAction)refresh:(id)sender
 {
+    [self.connection cancel];
+    self.connection = nil;
     // might want to use introspection to be sure sender is UIBarButtonItem
     // (if not, it can skip the spinner)
     // that way this method can be a little more generic

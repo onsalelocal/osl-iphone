@@ -11,7 +11,7 @@
 #import "DataViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface StoreProfileDealsViewController : DataViewController <NSURLConnectionDataDelegate, NSURLConnectionDataDelegate,MKAnnotation, MKMapViewDelegate>
+@interface StoreProfileDealsViewController : DataViewController <MKAnnotation, MKMapViewDelegate>
 
 //@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *commentsButton;

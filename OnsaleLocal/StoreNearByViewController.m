@@ -101,6 +101,18 @@
     [self.rootDelegate didSelectItem:rvc andIdentifier:@"storeSelected"];
 }
 
+-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    MKCoordinateRegion region = mapView.region;
+    CLLocationCoordinate2D centerCoordinate = mapView.centerCoordinate;
+    CLLocation * newLocation = [[CLLocation alloc] initWithLatitude:centerCoordinate.latitude+region.span.latitudeDelta longitude:centerCoordinate.longitude];
+    CLLocation * centerLocation = [[CLLocation alloc] initWithLatitude:centerCoordinate.latitude longitude:centerCoordinate.longitude];
+    CLLocationDistance distance = [centerLocation distanceFromLocation:newLocation];
+    distance *= 0.000621371192; //miles
+    NSLog(@"%f, %f", mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude);
+    self.currentQuery = [NSString stringWithFormat:@"http://onsalelocal.com/osl2/ws/v2/nearby-stores?format=json&latitude=%f&longitude=%f&radius=%f&offer=true",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude,distance];
+    [self refresh:self];
+}
+
 
 /*
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

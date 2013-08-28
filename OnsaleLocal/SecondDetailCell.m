@@ -31,7 +31,15 @@
 -(void)setDealDict:(NSDictionary *)dealDict{
     _dealDict = dealDict;
     [self.imageView setImageWithURL:[NSURL URLWithString:self.dealDict[DEAL_SHARED_BY][@"img"]] completed:nil];
-    self.fromWhoLabel.text = [NSString stringWithFormat:@"%@ %@",self.dealDict[DEAL_SHARED_BY][USER_FIRST_NAME],self.dealDict[DEAL_SHARED_BY][USER_LAST_NAME]];
+    if(self.dealDict[DEAL_SHARED_BY]){
+        self.fromWhoLabel.text = [NSString stringWithFormat:@"%@ %@",self.dealDict[DEAL_SHARED_BY][USER_FIRST_NAME],self.dealDict[DEAL_SHARED_BY][USER_LAST_NAME]];
+    }
+    else{
+        self.imageView.image = [UIImage imageNamed:@"icon.png"];
+        self.fromWhoLabel.text = @"OnsaleLocal";
+        self.followButton.hidden = YES;
+        self.howLongAgoLabel.hidden = YES;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
