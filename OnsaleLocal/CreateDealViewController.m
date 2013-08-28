@@ -138,21 +138,23 @@
 }
 
 - (IBAction)submitPressed:(id)sender {
+    
+    NSMutableDictionary* _params = [@{DEAL_TITLE:self.dealTitle.text,
+                                    DEAL_DESCRIPTION:self.descriptionField.text,
+                                    DEAL_PRICE:self.originalPrice.text,
+                                    DEAL_DISCOUNT:self.discount.text,
+                                    STORE_NAME:self.storeName.text,
+                                    STORE_ADDRESS:self.storeAddress.text,
+                                    STORE_CITY:self.city.text,
+                                    STORE_STATE:self.state.text,
+                                    STORE_PHONE:self.phoneNumber.text,
+                                    @"country":@"us",
+                                    @"tags":@"none"} mutableCopy];
     /*
-     NSDictionary* _params = @{DEAL_TITLE:self.dealTitle.text,
-     DEAL_DESCRIPTION:self.descriptionField.text,
-     DEAL_PRICE:self.originalPrice.text,
-     DEAL_DISCOUNT:self.discount.text,
-     STORE_NAME:self.storeName.text,
-     STORE_ADDRESS:self.storeAddress.text,
-     STORE_CITY:self.city.text,
-     STORE_STATE:self.state.text,
-     STORE_PHONE:self.phoneNumber};
-     */
-    NSMutableDictionary* __block _params = [@{DEAL_TITLE:@"title",
-                              DEAL_DESCRIPTION:@"description",
-                              DEAL_PRICE:@"$15",
-                              DEAL_DISCOUNT:@"10%",
+     NSMutableDictionary* __block _params = [@{DEAL_TITLE:@"title",
+     DEAL_DESCRIPTION:@"description",
+     DEAL_PRICE:@"$15",
+     DEAL_DISCOUNT:@"10%",
                               STORE_NAME:@"SomeName",
                               STORE_ADDRESS:@"1400 page mill rd",
                               STORE_CITY:@"palo alto",
@@ -162,8 +164,10 @@
                               @"latitude":@"0.0",
                               @"longitude":@"0.0",
                               @"country":@"us"} mutableCopy];
-    // the boundary string : a random string, that will not repeat in post data, to separate post data fields.
+      */
 #if (TARGET_IPHONE_SIMULATOR)
+    _params[@"longitude"] = [NSString stringWithFormat:@"%f", -121.924000];
+    _params[@"latitude"] = [NSString stringWithFormat:@"%f", 37.370300];
     [self submitHelper:_params];
 #else
 
@@ -173,6 +177,7 @@
         CLPlacemark* p = placemarks.count > 0 ? placemarks[0] : nil;
         _params[@"latitude"] = [NSString stringWithFormat:@"%f", p.location.coordinate.latitude];
         _params[@"longitude"] = [NSString stringWithFormat:@"%f", p.location.coordinate.longitude];
+        
         [self submitHelper:_params];
     }];
 #endif
@@ -180,6 +185,7 @@
 }
 
 - (void) submitHelper: (NSDictionary*) _params{
+    NSLog(@"%@",_params);
     NSString *BoundaryConstant = @"----------V2ymHFg03ehbqgZCaKO6jy";
     
     // string constant for the post parameter 'file'. My server uses this name: `file`. Your's may differ

@@ -826,7 +826,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "254"
          endingLineNumber = "254"
-         landmarkName = "-heightForString:withFont:"
+         landmarkName = "-containerFinishedUpdating:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -852,7 +852,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "258"
          endingLineNumber = "258"
-         landmarkName = "-numberOfSectionsInTableView:"
+         landmarkName = "-heightForString:withFont:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -865,7 +865,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "245"
          endingLineNumber = "245"
-         landmarkName = "-containerFinishedUpdating:"
+         landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -917,8 +917,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "269"
          endingLineNumber = "269"
-         landmarkName = "-tableView:heightForRowAtIndexPath:"
-         landmarkType = "5">
+         landmarkName = "@implementation DetailViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -2110,7 +2110,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "104"
          endingLineNumber = "104"
-         landmarkName = "-initWithNibName:bundle:"
+         landmarkName = "-setCommentsDealDict:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -2535,7 +2535,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "349"
          endingLineNumber = "349"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkName = "-heightForTags"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -2548,7 +2548,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "354"
          endingLineNumber = "354"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkName = "-tableView:willDisplayCell:forRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -3196,8 +3196,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "106"
          endingLineNumber = "106"
-         landmarkName = "-initWithNibName:bundle:"
-         landmarkType = "5">
+         landmarkName = "@implementation DetailViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -3209,8 +3209,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "171"
          endingLineNumber = "171"
-         landmarkName = "@implementation DetailViewController"
-         landmarkType = "3">
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -3543,19 +3543,6 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "OnsaleLocal/CreateDealViewController.m"
-         timestampString = "397938553.254852"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "213"
-         endingLineNumber = "213"
-         landmarkName = "-submitHelper:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
@@ -3573,11 +3560,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/CreateDealViewController.m"
-         timestampString = "397938553.254852"
+         timestampString = "398913211.442923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "198"
-         endingLineNumber = "198"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
          landmarkName = "-submitHelper:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -3586,11 +3573,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/CreateDealViewController.m"
-         timestampString = "397938553.254852"
+         timestampString = "398913211.442923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "203"
-         endingLineNumber = "203"
+         startingLineNumber = "209"
+         endingLineNumber = "209"
          landmarkName = "-submitHelper:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -3599,11 +3586,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "OnsaleLocal/CreateDealViewController.m"
-         timestampString = "397938553.254852"
+         timestampString = "398913211.442923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
+         startingLineNumber = "213"
+         endingLineNumber = "213"
          landmarkName = "-submitHelper:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -3624,14 +3611,27 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "OnsaleLocal/DetailViewController.h"
-         timestampString = "397939239.135064"
+         filePath = "OnsaleLocal/CreateDealViewController.m"
+         timestampString = "398913211.442923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "19"
-         endingLineNumber = "19"
-         landmarkName = "@interface DetailViewController"
-         landmarkType = "2">
+         startingLineNumber = "188"
+         endingLineNumber = "188"
+         landmarkName = "-submitHelper:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "OnsaleLocal/CreateDealViewController.m"
+         timestampString = "398913211.442923"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
+         landmarkName = "-submitHelper:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
    <ExceptionBreakpoints>
